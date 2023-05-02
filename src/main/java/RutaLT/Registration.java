@@ -27,6 +27,7 @@ public class Registration extends BasePage{
     //private static final By esamSlaptEye = By.cssSelector("body > div:nth-child(11) > main:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > form:nth-child(2) > fieldset:nth-child(5) > p:nth-child(2) > span:nth-child(2) > span:nth-child(2)");
     private static final By naujasSlaptazodisInput = By.cssSelector("input[name='password_1']");
     private static final By pakartotasSlaptazodisInput = By.cssSelector("input[name='password_2']");
+    private static final By issaugotipakeitimusButton = By.cssSelector("button[value='Išsaugoti pakeitimus']");
 
     public Registration() {
         super(driver);
@@ -41,19 +42,22 @@ public class Registration extends BasePage{
         try{
             WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated(myAccountButton));
             accountButton.click();
+
+            WebElement emailField = driver.findElement(regEmail); //emailInput(){
+//        String emailData = "skirmantas.skirmantas@yahoo.com";
+            String emailData = "skirman.skirma@yahoo.com";
+            emailField.sendKeys(emailData);
+
+            WebElement registrButton = driver.findElement(registruotisButton);
+            registrButton.click();
+
+            WebElement atsijungtButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated(atsijungtiButton));
+            atsijungtButton.click();
+
         }catch (Exception e){
             System.out.println("My account Button is not found. ");
         }
-        WebElement emailField = driver.findElement(regEmail); //emailInput(){
-//        String emailData = "skirmantas.skirmantas@yahoo.com";
-        String emailData = "skirman.skirman@yahoo.com";
-        emailField.sendKeys(emailData);
 
-        WebElement registrButton = driver.findElement(registruotisButton);
-        registrButton.click();
-
-        WebElement atsijungtButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated(atsijungtiButton));
-        atsijungtButton.click();
     }
     public static void logingIn(){
         WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -80,7 +84,7 @@ public class Registration extends BasePage{
             System.out.println("Prisijungti button not found.");
         }
     }
-    public static void changePasword(){
+    public static void changePasword(){ // Pakeisti slaptažodį ir jį atstatyti.
         WebDriverWait myAccountEditWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try{
             WebElement myAccount = myAccountEditWait.until(ExpectedConditions.visibilityOfElementLocated(myAccountEdit));
@@ -102,11 +106,7 @@ public class Registration extends BasePage{
             String passwordInp = "palubinskasIrCo123";
             passwordIn.sendKeys(passwordInp);
             Thread.sleep(1000);
-///////////////////////////////////
-//            WebElement slaptEye = driver.findElement(esamSlaptEye);
-//            Actions action = new Actions(driver);
-//            action.moveToElement(slaptEye).click();
-///////////////////////////////////
+
             WebElement naujasInput = driver.findElement(naujasSlaptazodisInput);
             String naujasSlap = passwordInp.substring(0, passwordInp.length() - 3) + (Integer.parseInt(passwordInp.substring(passwordInp.length() - 3)) + 1);
             naujasInput.sendKeys(naujasSlap);
@@ -114,10 +114,29 @@ public class Registration extends BasePage{
             WebElement pakartotasInput = driver.findElement(pakartotasSlaptazodisInput);
             pakartotasInput.sendKeys(naujasSlap);
 
+            WebElement issaugotipakeitButton = driver.findElement(issaugotipakeitimusButton);
+            issaugotipakeitButton.click();
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+            // Paswordo atstatymas į pradinį:
 
+            JavascriptExecutor js1 = (JavascriptExecutor) driver;
+            js1.executeScript("window.scrollBy(0, 400)");
+            Thread.sleep(800);
+
+            WebElement passwordIn1 = driver.findElement(esamasSlaptazodisInput);
+            passwordIn1.sendKeys(naujasSlap);
+
+            WebElement naujasInput1 = driver.findElement(naujasSlaptazodisInput);
+            naujasInput1.sendKeys(passwordInp);
+
+            WebElement pakartotasInput1 = driver.findElement(pakartotasSlaptazodisInput);
+            pakartotasInput1.sendKeys(passwordInp);
+
+            WebElement issaugotipakeitButton1 = driver.findElement(issaugotipakeitimusButton);
+            issaugotipakeitButton1.click();
         }catch (Exception e){
-            System.out.println("Naujas slaptazodis Input is not displayed");
+            System.out.println("Išsaugoti pakeitimus Button is not displayed");
         }
 
     }
