@@ -12,6 +12,8 @@ import java.time.Duration;
 public class TestPage extends BasePage {
 
     private Registration registration;
+    private ShoppingBag shoppingBag;
+    private ChooseCheapestProducts chooseCheapestProducts;
     public TestPage() {
         super(driver);
     }
@@ -26,14 +28,29 @@ public class TestPage extends BasePage {
     }
 
     @Test
-    public void registration(){
+    public void registration() {
+//        BasePage.goTo();
+//        Registration.acceptCookie();
+//        Registration.registrations();
+//        Registration.logingIn(); // reikia dar su netikru prisijungimu
+//        Registration.changePasword();
+    }
+    @Test
+    public void shoppingBag(){
         BasePage.goTo();
         Registration.acceptCookie();
-//        Registration.registrations();
         Registration.logingIn();
-        Registration.changePasword();
+        ShoppingBag.ePardChoseCategory();
+        ShoppingBag.chooseFirstProduct();
+//        shoppingBag.chooseSecondProduct();
 
+        }
+    @Test
+    public void listOfProducts(){
+        ChooseCheapestProducts.list();
     }
+
+
     @AfterClass
     public static void teardown(){
 //        driver.quit();

@@ -12,14 +12,18 @@ import java.time.Duration;
 
 public class Registration extends BasePage{
 
+    // acceptCookie:
     private static final By cookieButton = By.cssSelector("div[class='cookies-holder'] button:nth-child(2)");
+    // registrations:
     private static final By myAccountButton = By.xpath("/html/body/div[1]/header/div/div[3]/div/div[4]/ul/li[2]/a");
     private static final By regEmail = By.xpath("/html/body/div[1]/main/div[2]/div/div/div[2]/div/div[2]/div/form/p[1]/input");
     private static final By registruotisButton = By.cssSelector("button[value='Registruotis']");
     private static final By atsijungtiButton = By.cssSelector("ul[class='account-nav nav nav-line nav-uppercase nav-vertical mt-half'] li[class='woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout'] a");
+    // logingIn:
     private static final By prisijungtiEmailInput = By.cssSelector("input[name='username']");
     private static final By prisijungtiPasswordInput = By.cssSelector("input[name='password']");
     private static final By prisijungtiButton = By.cssSelector("button[value='Prisijungti']");
+    //  changePasword / atstatyri Pasword:
     private static final By myAccountEdit = By.cssSelector(".account-link.account-login");
     private static final By vardasInput = By.cssSelector("input[name='account_first_name']");
     private static final By pavardeInput = By.cssSelector("input[name='account_last_name']");
@@ -45,7 +49,7 @@ public class Registration extends BasePage{
 
             WebElement emailField = driver.findElement(regEmail); //emailInput(){
 //        String emailData = "skirmantas.skirmantas@yahoo.com";
-            String emailData = "skirman.skirma@yahoo.com";
+            String emailData = "skirman.skirmat@yahoo.com";
             emailField.sendKeys(emailData);
 
             WebElement registrButton = driver.findElement(registruotisButton);
@@ -84,7 +88,9 @@ public class Registration extends BasePage{
             System.out.println("Prisijungti button not found.");
         }
     }
-    public static void changePasword(){ // Pakeisti slaptažodį ir jį atstatyti.
+
+    // Pakeisti slaptažodį ir jį atstatyti:
+    public static void changePasword(){
         WebDriverWait myAccountEditWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try{
             WebElement myAccount = myAccountEditWait.until(ExpectedConditions.visibilityOfElementLocated(myAccountEdit));
