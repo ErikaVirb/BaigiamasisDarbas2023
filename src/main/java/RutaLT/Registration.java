@@ -44,24 +44,20 @@ public class Registration extends BasePage{
             WebElement cookieAccept = driver.findElement(cookieButton);
             cookieAccept.click();
 
-            Wait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
+
+            FluentWait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(30))
-                    .pollingEvery(Duration.ofMillis(100))
-                    .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
+                    .pollingEvery(Duration.ofSeconds(1))
+                    .ignoring(NoSuchElementException.class);
 
-            fluentWait.until(ExpectedConditions.elementToBeClickable(popUps)).click();
+            WebElement popUpElement = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(popUps));
+            if(popUpElement.isDisplayed()){
+                System.out.println("popUp is visible.");
+            }else{
+                System.out.println("popUp is not visible.");
+            }
 
-
-//            WebElement popUp1 = popUpWait.until(ExpectedConditions.visibilityOfElementLocated(popUps));
-//            popUp1.click();
-
-//        String parentWindow = driver.getWindowHandle();
-//        for (String windowHandle : driver.getWindowHandles()) {
-//            driver.switchTo().window(windowHandle);
-//        }
-//        WebElement closeButton = driver.findElement(By.xpath("//button[@class='close-button']"));
-//        closeButton.click();
-//        driver.switchTo().window(parentWindow);
+//            fluentWait.until(ExpectedConditions.elementToBeClickable(popUps)).click();
 
         } catch (Exception e) {
         System.out.println("PopUp not displayd");
