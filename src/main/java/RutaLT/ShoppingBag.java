@@ -24,7 +24,8 @@ public class ShoppingBag extends BasePage{
     // Dedame prekes į krepšelį po 2vnt:
     private static final By product1 = By.xpath("/html/body/div[1]/main/div/div[2]/div/div[2]/div[2]/div/div[2]/div[2]/div[1]/p[2]/a");
 
-    private static final By popUp = By.className("close");
+//    private static final By popUp = By.className("close");
+    private static final By popUp1 = By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/button");
     private static final By plusOne = By.xpath("/html/body/div[2]/main/div/div[2]/div/div[1]/div/div[2]/form/div[1]/input[3]");
     private static final By pridetIKrep = By.xpath("/html/body/div[2]/main/div/div[2]/div/div[1]/div/div[2]/form/button");
     private static final By product2 = By.cssSelector(".product-small.col.has-hover.product.type-product.post-71912.status-publish.last.instock.product_cat-juodojo-sokolado-2.product_cat-sokoladines-figuros.has-post-thumbnail.taxable.shipping-taxable.purchasable.product-type-simple");
@@ -56,37 +57,15 @@ public class ShoppingBag extends BasePage{
             products1.click();
             Thread.sleep(2000);
    //////////////////////////////////////////////
+//
+//            String parentWindow = driver.getWindowHandle();
+//            for (String windowHandle : driver.getWindowHandles()) {
+//                driver.switchTo().window(windowHandle);
+//            }
+//            WebElement closeButton = driver.findElement(By.xpath("//button[@class='close-button']"));
+//            closeButton.click();
+//            driver.switchTo().window(parentWindow);
 
-
-            // set the implicit wait time to 10 seconds
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-            // get the main window handle
-            String mainWindowHandle = driver.getWindowHandle();
-
-            // find and click on the link that opens the popup window
-            WebElement popupLink = driver.findElement(By.linkText("mailerlite-popup"));
-            popupLink.click();
-
-            // wait for the popup window to appear
-            Set<String> allWindowHandles = driver.getWindowHandles();
-            String popupWindowHandle = null;
-            for (String handle : allWindowHandles) {
-                if (!handle.equals(mainWindowHandle)) {
-                    popupWindowHandle = handle;
-                    break;
-                }
-            }
-            driver.switchTo().window(popupWindowHandle);
-
-            // close the popup window
-            driver.close();
-
-            // switch back to the main window
-            driver.switchTo().window(mainWindowHandle);
-
-//            WebElement popUpClose = ePardButtonWait.until(ExpectedConditions.visibilityOfElementLocated(popUp));
-//            popUpClose.click();
    /////////////////////////////////////////////////
 
             JavascriptExecutor js2 = (JavascriptExecutor) driver;

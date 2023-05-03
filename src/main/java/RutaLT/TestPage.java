@@ -29,8 +29,8 @@ public class TestPage extends BasePage {
 
     @Test
     public void registration() {
-//        BasePage.goTo();
-//        Registration.acceptCookie();
+        BasePage.goTo();
+        Registration.acceptCookie();
 //        Registration.registrations();
 //        Registration.logingIn(); // reikia dar su netikru prisijungimu
 //        Registration.changePasword();

@@ -1,11 +1,10 @@
 package RutaLT;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -14,6 +13,8 @@ public class Registration extends BasePage{
 
     // acceptCookie:
     private static final By cookieButton = By.cssSelector("div[class='cookies-holder'] button:nth-child(2)");
+    private static final By iframe = By.id("ml-webforms-popup-5855857");
+    private static final By popUps = By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/button");
     // registrations:
     private static final By myAccountButton = By.xpath("/html/body/div[1]/header/div/div[3]/div/div[4]/ul/li[2]/a");
     private static final By regEmail = By.xpath("/html/body/div[1]/main/div[2]/div/div/div[2]/div/div[2]/div/form/p[1]/input");
@@ -37,10 +38,36 @@ public class Registration extends BasePage{
         super(driver);
     }
 
-    public static void acceptCookie(){
-        WebElement cookieAccept = driver.findElement(cookieButton);
-        cookieAccept.click();
+    public static void acceptCookie() {
+        WebDriverWait popUpWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        try {
+            WebElement cookieAccept = driver.findElement(cookieButton);
+            cookieAccept.click();
+
+            Wait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(30))
+                    .pollingEvery(Duration.ofMillis(100))
+                    .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
+
+            fluentWait.until(ExpectedConditions.elementToBeClickable(popUps)).click();
+
+
+//            WebElement popUp1 = popUpWait.until(ExpectedConditions.visibilityOfElementLocated(popUps));
+//            popUp1.click();
+
+//        String parentWindow = driver.getWindowHandle();
+//        for (String windowHandle : driver.getWindowHandles()) {
+//            driver.switchTo().window(windowHandle);
+//        }
+//        WebElement closeButton = driver.findElement(By.xpath("//button[@class='close-button']"));
+//        closeButton.click();
+//        driver.switchTo().window(parentWindow);
+
+        } catch (Exception e) {
+        System.out.println("PopUp not displayd");
     }
+
+}
     public static void registrations(){
         WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try{
