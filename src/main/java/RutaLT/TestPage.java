@@ -31,6 +31,7 @@ public class TestPage extends BasePage {
     public void registration() {
         BasePage.goTo();
         Registration.acceptCookie();
+        Registration.popUpHandling();
 //        Registration.registrations();
 //        Registration.logingIn(); // reikia dar su netikru prisijungimu
 //        Registration.changePasword();
@@ -42,11 +43,13 @@ public class TestPage extends BasePage {
         Registration.logingIn();
         ShoppingBag.ePardChoseCategory();
         ShoppingBag.chooseFirstProduct();
-//        shoppingBag.chooseSecondProduct();
+        ShoppingBag.chooseSecondProduct();
 
         }
     @Test
     public void listOfProducts(){
+        BasePage.goTo();
+        Registration.acceptCookie();
         ChooseCheapestProducts.list();
     }
 

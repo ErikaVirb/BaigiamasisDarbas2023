@@ -1,5 +1,6 @@
 package RutaLT;
 
+import com.google.common.base.Function;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,13 +9,15 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Set;
 
 public class Registration extends BasePage{
 
     // acceptCookie:
     private static final By cookieButton = By.cssSelector("div[class='cookies-holder'] button:nth-child(2)");
-    private static final By iframe = By.id("ml-webforms-popup-5855857");
-    private static final By popUps = By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/button");
+    private static final By iframe = By.xpath("/html/body/iframe[1]");
+    private static final By popUpEmailInput = By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div/div/div[4]/div/div/div/div/div/form/div/div/div/div/input");
+    private static final By popUpsClose = By.xpath("//button[@class='close']");
     // registrations:
     private static final By myAccountButton = By.xpath("/html/body/div[1]/header/div/div[3]/div/div[4]/ul/li[2]/a");
     private static final By regEmail = By.xpath("/html/body/div[1]/main/div[2]/div/div/div[2]/div/div[2]/div/form/p[1]/input");
@@ -39,32 +42,168 @@ public class Registration extends BasePage{
     }
 
     public static void acceptCookie() {
-        WebDriverWait popUpWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
         try {
             WebElement cookieAccept = driver.findElement(cookieButton);
             cookieAccept.click();
-
-
-            FluentWait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(30))
-                    .pollingEvery(Duration.ofSeconds(1))
-                    .ignoring(NoSuchElementException.class);
-
-            WebElement popUpElement = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(popUps));
-            if(popUpElement.isDisplayed()){
-                System.out.println("popUp is visible.");
-            }else{
-                System.out.println("popUp is not visible.");
-            }
-
-//            fluentWait.until(ExpectedConditions.elementToBeClickable(popUps)).click();
-
         } catch (Exception e) {
         System.out.println("PopUp not displayd");
     }
 
-}
+//        try {
+//            Thread.sleep(10000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//// Check for the pop-up again
+//        try {
+//            Alert alert = driver.switchTo().alert();
+//            alert.dismiss();
+//        } catch (NoAlertPresentException e) {
+            // No alert found, continue with your test
+        }
+
+/////////////////////////////////////////////////////////////////////////
+    public static void popUpHandling() {
+
+        try {
+            Wait wait = new FluentWait(driver)
+                    .withTimeout(Duration.ofSeconds(30))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+
+            WebElement popup = (WebElement) wait.until(new Function<WebDriver, WebElement>() {
+                public WebElement apply(WebDriver driver) {
+                    JavascriptExecutor js = (JavascriptExecutor) driver;
+                    Boolean isPopupPresent = (Boolean) js.executeScript("return document.body.innerHTML.contains('Prenumeruokite saldainių fabriko „Rūta“ naujienlaiškį ir gaukite 10 % nuolaidą pirmam apsipirkimui www.ruta.lt!')");
+                    if (isPopupPresent) {
+                        return (WebElement) driver.switchTo().alert();
+                    }
+                    return null;
+                }
+            });
+
+            if (popup != null) {
+                popup.submit();
+            }
+        } catch (Exception e) {
+            System.out.println("Error occurred while dismissing the alert popup: " + e.getMessage());
+        }
+//        WebDriverWait iframeWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+//
+//        try {
+//            JavascriptExecutor js = (JavascriptExecutor) driver;
+//            Boolean isPopupPresent = (Boolean) js.executeScript("return document.body.innerHTML.contains('Prenumeruokite saldainių fabriko „Rūta“ naujienlaiškį ir gaukite 10 % nuolaidą pirmam apsipirkimui www.ruta.lt!')");
+//            if (isPopupPresent) {
+//                Alert alert = driver.switchTo().alert();
+//                alert.dismiss();
+//            }
+//
+//        }catch (Exception e) {
+//            System.out.println("Iframe is not in display");
+//        }
+
+
+//            WebElement element = driver.findElement(By.className("close"));
+//            Point point = element.getLocation();
+//
+//// Calculate the pixel coordinates relative to the top-left corner of the screen
+//            int x = point.getX() + driver.manage().window().getPosition().getX();
+//            int y = point.getY() + driver.manage().window().getPosition().getY();
+//
+//// Click at the calculated coordinates
+//            Actions = new Actions(driver);
+//            actions.moveByOffset(x, y).click().build().perform();
+//            System.out.println(x);
+//            System.out.println(y);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//            Thread.sleep(5000);
+//            Actions actions = new Actions(driver);
+//            actions.moveByOffset(100, 200).click().build().perform();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//            Thread.sleep(5000);
+//            Alert alert = driver.switchTo().alert();
+//            alert.sendKeys("skirman.skirmat@yahoo.com");
+//
+//
+
+//            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+//            WebElement popup = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='close']")));
+//            if(popup != null) {
+//            popup.click();
+//            } else {
+//                JavascriptExecutor executor = (JavascriptExecutor) driver;
+//                executor.executeScript("window.close()");
+//            }
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//            Thread.sleep(5000);
+//            FluentWait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
+//                    .withTimeout(Duration.ofSeconds(90))
+//                    .pollingEvery(Duration.ofSeconds(1))
+//                    .ignoring(NoSuchElementException.class);
+//            WebElement popUpElement = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByCssSelector("document.querySelector(\"#ml-webforms-popup-5855857\")")));
+//            popUpElement.click();
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//            Thread.sleep(10000);
+//            String mainWindowHandle = driver.getWindowHandle();
+//            Set<String> allWindowHandles = driver.getWindowHandles();
+//
+//            for (String handle : allWindowHandles) {
+//                if (!handle.equals(mainWindowHandle)) {
+//                    driver.switchTo().window(handle);
+//                }
+//            }
+//            WebElement popupElement = driver.findElement(popUpEmailInput);
+//            popupElement.sendKeys("Some text");
+
+
+//        }catch (Exception e){
+//            System.out.println("PopUp element not found");
+//        }
+
+//        try {
+//            t1.start();
+//            t2.start();
+//
+//            t1.join();
+//            t2.join();
+//
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    Thread t1 = new Thread(new Runnable()) {
+//        @Override
+//        public void run() {
+//
+//        }
+//    }
+
+//        FluentWait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
+//                .withTimeout(Duration.ofSeconds(45))
+//                .pollingEvery(Duration.ofSeconds(1))
+//                .ignoring(NoSuchElementException.class);
+//
+//        WebElement popUpElement = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(popUps));
+//        if(popUpElement.isDisplayed()){
+//
+//            System.out.println("popUp is visible.");
+//        }else{
+//            System.out.println("popUp is not visible.");
+//        }
+//        popUpElement.click();
+//            fluentWait.until(ExpectedConditions.elementToBeClickable(popUps)).click();
+
+
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////
     public static void registrations(){
+
+
         WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try{
             WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated(myAccountButton));
@@ -87,6 +226,8 @@ public class Registration extends BasePage{
 
     }
     public static void logingIn(){
+
+
         WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try{
             WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated(myAccountButton));
