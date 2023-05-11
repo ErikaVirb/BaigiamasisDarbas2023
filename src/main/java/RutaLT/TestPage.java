@@ -18,9 +18,12 @@ public class TestPage extends BasePage {
 
     private PopUpSubscription popUpSubscription;
     private Registration registration;
-    private LogingIn logingIn;
+    private LoggingIn loggingIn;
+    private ChangePassword changePassword;
     private ShoppingBag shoppingBag;
     private ChooseCheapestProducts chooseCheapestProducts;
+    private ArraySearchProduct arraySearchProduct;
+    private BandymaiIstrinti bandymaiIstrinti;
 
 
     public TestPage() {
@@ -32,57 +35,73 @@ public class TestPage extends BasePage {
     public static void setUp(){
 
         // CHROME:
-//    System.setProperty("webdriver.chrome.driver", "D:/Mano/Mokslai/IT mokymai/chromedriver.exe");
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--disable-notifications");
-//
-//        TestPage.driver = new ChromeDriver(options);
-//        TestPage.driver.manage().window().maximize();
+    System.setProperty("webdriver.chrome.driver", "D:/Mano/Mokslai/IT mokymai/chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-notifications");
+
+        TestPage.driver = new ChromeDriver(options);
+        TestPage.driver.manage().window().maximize();
 
         // FIREFOX:
 
-    System.setProperty("webdriver.gecko.driver", "D:/Mano/Mokslai/IT mokymai/Firefox/geckodriver.exe");
-        FirefoxOptions options1 = new FirefoxOptions();
-        options1.addArguments("--disable-notifications");
-
-        TestPage.driver = new FirefoxDriver(options1);
-        TestPage.driver.manage().window().maximize();
+//    System.setProperty("webdriver.gecko.driver", "D:/Mano/Mokslai/IT mokymai/Firefox/geckodriver.exe");
+//        FirefoxOptions options1 = new FirefoxOptions();
+//        options1.addArguments("--disable-notifications");
+//
+//        TestPage.driver = new FirefoxDriver(options1);
+//        TestPage.driver.manage().window().maximize();
 
     }
 
     @Test
-    public void registration() throws IOException {  // veikia
-        BasePage.goTo();
-        Registration.acceptCookie();
+    public void registration() throws IOException {  // VEIKIA. DAR REIKIA: screenshots;
+//        BasePage.goTo();
+//        Registration.acceptCookie();
 //        PopUpSubscription.subscription();
 //        Registration.registrations();
+//        Registration.alreadyExistingEmailRegistration();
     }
     @Test
-    public void logingIn() throws IOException { // veikia
+    public void logingIn() throws IOException { // VEIKIA. DAR REIKIA: screenshots;
 //        BasePage.goTo();
 //        Registration.acceptCookie();
 //        PopUpSubscription.subscription();
-//        LogingIn.logingIn(); // reikia dar su netikru prisijungimu
-//        ChangePasword.changePasword();
+//        LoggingIn.loggingIn();
+//        ChangePassword.changePassword();
+//        LoggingIn.incorrectDatalogingIn();
     }
-    @Test
-    public void changePasword() throws IOException { // veikia
-//        BasePage.goTo();
-//        Registration.acceptCookie();
-//        PopUpSubscription.subscription();
-//        ChangePasword.changePasword();
-    }
+
     @Test
     public void shoppingBag() throws IOException {
+        BasePage.goTo();
+        Registration.acceptCookie();
+        PopUpSubscription.subscription();
+        ShoppingBag.eShopChoseCategory();
+        ShoppingBag.chooseFirstProduct();
+        ShoppingBag.chooseSecondProduct();
+        ShoppingBag.chooseThirdProduct();
+        ShoppingBag.manageShopBag();
+
+        }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    @Test
+//    public void ArraySearchProduct()throws IOException {
+//
 //        BasePage.goTo();
 //        Registration.acceptCookie();
 //        PopUpSubscription.subscription();
-//        LogingIn.logingIn();
-//        ShoppingBag.eShopChoseCategory();
-//        ShoppingBag.chooseFirstProduct();
-//        ShoppingBag.chooseSecondProduct();
+//        ArraySearchProduct.searchByTitle();
+//    }
+//    @Test
+//    public void BandymaiArraySearchProduct()throws IOException {
+//
+//        BasePage.goTo();
+//        Registration.acceptCookie();
+//        PopUpSubscription.subscription();
+//        BandymaiIstrinti.ArraySearchProductBandymai();
+//    }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        }
     @Test
     public void listOfProducts() throws IOException {
 //        BasePage.goTo();

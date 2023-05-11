@@ -33,9 +33,9 @@ public class PopUpSubscription extends BasePage {
         } catch (Exception e) {
             System.out.println("Nerastas popupas");
         }
-        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        Path destinationPath = Paths.get("sreenshot.png");
-        Files.copy(screenshotFile.toPath(), destinationPath);
+//        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//        Path destinationPath = Paths.get("sreenshot.png");
+//        Files.copy(screenshotFile.toPath(), destinationPath);
     }
 
     public static void subscription() throws IOException {
@@ -61,9 +61,9 @@ public class PopUpSubscription extends BasePage {
         } catch (Exception e) {
             System.out.println("Miler Lite Frame not in display");
         }
-        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        Path destinationPath = Paths.get("sreenshot.png");
-        Files.copy(screenshotFile.toPath(), destinationPath);
+//        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//        Path destinationPath = Paths.get("sreenshot.png");
+//        Files.copy(screenshotFile.toPath(), destinationPath);
 
 
     }
