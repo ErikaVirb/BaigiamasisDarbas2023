@@ -16,16 +16,21 @@ import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Registration extends BasePage {
 
     // acceptCookie:
     private static final By cookieButton = By.cssSelector("div[class='cookies-holder'] button:nth-child(2)");
     // registrations:
-    private static final By myAccountButton = By.xpath("/html/body/div[1]/header/div/div[3]/div/div[4]/ul/li[2]/a");
-    private static final By regEmail = By.xpath("/html/body/div[1]/main/div[2]/div/div/div[2]/div/div[2]/div/form/p[1]/input");
+    private static final By myAccountButton = By.xpath("/html/body/div[1]/header/div/div[3]/div/div[4]" +
+            "/ul/li[2]/a");
+    private static final By regEmail = By.xpath("/html/body/div[1]/main/div[2]/div/div/div[2]/div/div[2]" +
+            "/div/form/p[1]/input");
     private static final By registrationButton = By.cssSelector("button[value='Registruotis']");
-    private static final By disconnectButton = By.cssSelector("ul[class='account-nav nav nav-line nav-uppercase nav-vertical mt-half'] li[class='woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout'] a");
+    private static final By disconnectButton = By.cssSelector("ul[class='account-nav nav nav-line nav-uppercase " +
+            "nav-vertical mt-half'] li[class='woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation" +
+            "-link--customer-logout'] a");
     private static final By greetingText = By.cssSelector("strong:nth-child(1)");
 
 
@@ -33,7 +38,7 @@ public class Registration extends BasePage {
         super(driver);
     }
 
-    public static void acceptCookie() throws IOException {
+    public static <SimpleDataFormat> void acceptCookie() throws IOException {
 
         try {
             WebElement cookieAccept = driver.findElement(cookieButton);
@@ -42,19 +47,20 @@ public class Registration extends BasePage {
             System.out.println("PopUp not displayd");
         }
 
-//        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//        SimpleDataFormat timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-//        )
+
+//        SimpleDataFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
+//        String timestamp = ((SimpleDateFormat) formatter).format(new Date());
+//
+//        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 //        try{
-//            String screenshotPath = "D:\\Mano\\Mokslai\\IT mokymai\\Baigiamasis2023\\ScreenshotFilesreenshot.png" + timestamp + "_screenshot";
-//            Path destinationPath = Path.of(screenshotPath);
-//            Files.copy(screenshotFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+//        String screenshotPath = "D:\\Mano\\Mokslai\\IT mokymai\\Baigiamasis2023\\ScreenshotFilesreenshot.png" +
+//                timestamp + "_screenshot";
+//        Path destinationPath = Path.of(screenshotPath);
+//        Files.copy(screenshotFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 //        } catch (Exception e){
 //            System.out.println("Screenshot already exists");
 //        }
 //
-//        Path destinationPath = Paths.get("D:\\Mano\\Mokslai\\IT mokymai\\Baigiamasis2023\\ScreenshotFilesreenshot.png");
-
 //        driver.quit();
     }
 
@@ -63,7 +69,8 @@ public class Registration extends BasePage {
 
             WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(15));
             try {
-                WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated(myAccountButton));
+                WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated
+                        (myAccountButton));
                 accountButton.click();
                 WebElement emailField = driver.findElement(regEmail);
 //                String emailData = "registracija.registration@gmail.com";
@@ -92,7 +99,8 @@ public class Registration extends BasePage {
                     System.out.println("The email field value and the text value are different.");
                 }
 
-                WebElement discButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated(disconnectButton));
+                WebElement discButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated
+                        (disconnectButton));
                 discButton.click();
 
             } catch (Exception e) {
@@ -108,7 +116,8 @@ public class Registration extends BasePage {
 
             WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(10));
             try {
-                WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated(myAccountButton));
+                WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated
+                        (myAccountButton));
                 accountButton.click();
                 WebElement emailField = driver.findElement(regEmail);
                 String emailData = "skirmantas.skirmantas@yahoo.com";

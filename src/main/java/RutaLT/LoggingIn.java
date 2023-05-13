@@ -10,7 +10,8 @@ import java.time.Duration;
 public class LoggingIn extends BasePage{
 
 
-    private static final By myAccountButton = By.xpath("/html/body/div[1]/header/div/div[3]/div/div[4]/ul/li[2]/a");
+    private static final By myAccountButton = By.xpath("/html/body/div[1]/header/div/div[3]/div/div" +
+            "[4]/ul/li[2]/a");
     private static final By connectEmailInput = By.cssSelector("input[name='username']");
     private static final By connectPasswordInput = By.cssSelector("input[name='password']");
     private static final By connectButton = By.cssSelector("button[value='Prisijungti']");
@@ -25,7 +26,8 @@ public class LoggingIn extends BasePage{
 
         WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
-            WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated(myAccountButton));
+            WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated
+                    (myAccountButton));
             accountButton.click();
         } catch (Exception e) {
             System.out.println("My account Button is not found. ");
@@ -53,7 +55,8 @@ public class LoggingIn extends BasePage{
 
         WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
-            WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated(myAccountButton));
+            WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated
+                    (myAccountButton));
             accountButton.click();
         } catch (Exception e) {
             System.out.println("My account Button is not found. ");

@@ -32,7 +32,8 @@ public class ChangePassword extends BasePage{
 
         WebDriverWait myAccountEditWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
-            WebElement myAccount = myAccountEditWait.until(ExpectedConditions.visibilityOfElementLocated(myAccountEdit));
+            WebElement myAccount = myAccountEditWait.until(ExpectedConditions.visibilityOfElementLocated
+                    (myAccountEdit));
             myAccount.click();
 //            String emailField = "skirmantas.skirmantas@yahoo.com";
 //            WebElement email1 = myAccountEditWait.until(ExpectedConditions.visibilityOfElementLocated(email));
@@ -53,7 +54,8 @@ public class ChangePassword extends BasePage{
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 400)");
             Thread.sleep(800);
-            WebElement passwordIn = myAccountEditWait.until(ExpectedConditions.visibilityOfElementLocated(existingPasswordInput));
+            WebElement passwordIn = myAccountEditWait.until(ExpectedConditions.visibilityOfElementLocated
+                    (existingPasswordInput));
             String passwordInp = "palubinskasIrCo123";
             passwordIn.sendKeys(passwordInp);
             Thread.sleep(1000);
@@ -65,7 +67,7 @@ public class ChangePassword extends BasePage{
             repeatedInput.sendKeys(newPassword);
             WebElement saveChanButton = driver.findElement(saveChangesButton);
             saveChanButton.click();
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // Paswordo atstatymas į pradinį:
             JavascriptExecutor js1 = (JavascriptExecutor) driver;
             js1.executeScript("window.scrollBy(0, 400)");

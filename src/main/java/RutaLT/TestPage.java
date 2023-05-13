@@ -16,6 +16,7 @@ import static org.junit.Assert.assertArrayEquals;
 public class TestPage extends BasePage {
 
 
+
     private PopUpSubscription popUpSubscription;
     private Registration registration;
     private LoggingIn loggingIn;
@@ -23,8 +24,11 @@ public class TestPage extends BasePage {
     private ShoppingBag shoppingBag;
     private ChooseCheapestProducts chooseCheapestProducts;
     private ArraySearchProduct arraySearchProduct;
+    private ProductsFilter productsFilter;
+    ///////////////////////////////////////////////////////////////////////////////
     private BandymaiIstrinti bandymaiIstrinti;
-
+    private BandymaiPaprastiIštrinti bandymaiPaprastiIštrinti;
+    /////////////////////////////////////////////////////////////////////////////////
 
     public TestPage() {
         super(driver);
@@ -62,7 +66,7 @@ public class TestPage extends BasePage {
 //        Registration.alreadyExistingEmailRegistration();
     }
     @Test
-    public void logingIn() throws IOException { // VEIKIA. DAR REIKIA: screenshots;
+    public void loggingIn() throws IOException { // VEIKIA. DAR REIKIA: screenshots;
 //        BasePage.goTo();
 //        Registration.acceptCookie();
 //        PopUpSubscription.subscription();
@@ -71,6 +75,15 @@ public class TestPage extends BasePage {
 //        LoggingIn.incorrectDatalogingIn();
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @Test
+    public void bandymaiPaprastiIštrinti() throws IOException {
+        BasePage.goTo();
+        Registration.acceptCookie();
+        PopUpSubscription.subscription();
+        BandymaiPaprastiIštrinti.listas();
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void shoppingBag() throws IOException {
         BasePage.goTo();
@@ -84,30 +97,42 @@ public class TestPage extends BasePage {
 
         }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    @Test
-//    public void ArraySearchProduct()throws IOException {
-//
-//        BasePage.goTo();
-//        Registration.acceptCookie();
-//        PopUpSubscription.subscription();
-//        ArraySearchProduct.searchByTitle();
-//    }
-//    @Test
-//    public void BandymaiArraySearchProduct()throws IOException {
-//
-//        BasePage.goTo();
-//        Registration.acceptCookie();
-//        PopUpSubscription.subscription();
-//        BandymaiIstrinti.ArraySearchProductBandymai();
-//    }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     @Test
-    public void listOfProducts() throws IOException {
+    public void productsFilter() throws IOException {
+        BasePage.goTo();
+        Registration.acceptCookie();
+        PopUpSubscription.subscription();
+        ProductsFilter.smollestPrice();
+//        ProductsFilter.biggestPrice();
+    }
+    @Test
+    public void ArraySearchProduct() throws IOException {
+        BasePage.goTo();
+        Registration.acceptCookie();
+        PopUpSubscription.subscription();
+        ArraySearchProduct.searchByTitle();
+    }
+    @Test
+    public void BandymaiArraySearchProduct() throws IOException {
+        BasePage.goTo();
+        Registration.acceptCookie();
+        PopUpSubscription.subscription();
+        BandymaiIstrinti.ArraySearchProductBandymai();
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @Test
+    public void chooseCheapestProducts() throws IOException {
+        BasePage.goTo();
+        Registration.acceptCookie();
+        PopUpSubscription.subscription();
+        ChooseCheapestProducts.list();
+}
+//    @Test
+//    public void listOfProducts() throws IOException {
 //        BasePage.goTo();
 //        Registration.acceptCookie();
 //        ChooseCheapestProducts.list();
-    }
+//    }
     @Test
     public void listComparison() throws IOException {
 //        List<String> list1 = new ArrayList<>();
@@ -127,7 +152,7 @@ public class TestPage extends BasePage {
 
 
     @AfterClass
-    public static void teardown(){
+    public static void teardown() {
 //        driver.quit();
     }
 
