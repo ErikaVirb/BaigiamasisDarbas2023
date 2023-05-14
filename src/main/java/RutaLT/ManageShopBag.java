@@ -14,10 +14,10 @@ public class ManageShopBag extends BasePage{
     // Tvarkomės su pirkiniu krepšeliu:
     private static final By shoppingBag = By.cssSelector("a[class='header-cart-link is-small']");
     private static final By removeProduct3 = By.cssSelector(".remove[data-gtm4wp_product_id='33835']");
-    private static final By reduce = By.cssSelector("tr.woocommerce-cart-form__cart-item:nth-child(2) > " +
-            "td:nth-child(5) > div:nth-child(1) > input:nth-child(1)");
-    private static final By increase = By.cssSelector("tr.woocommerce-cart-form__cart-item:nth-child(1) > " +
-            "td:nth-child(5) > div:nth-child(1) > input:nth-child(4)");
+    private static final By reduce = By.className("(//input[@value='-'])[2]");//tr.woocommerce-cart-form__cart-item:nth-child(2) > " +
+          //  "td:nth-child(5) > div:nth-child(1) > input:nth-child(1)
+    private static final By increase = By.className("(//input[@value='+'])[1]");//tr.woocommerce-cart-form__cart-item:nth-child(1) > " +
+           // "td:nth-child(5) > div:nth-child(1) > input:nth-child(4)
     private static final By updateshoppingBag = By.cssSelector("button.button:nth-child(2)");
     private static final By updateMessageText = By.cssSelector(".woocommerce-notices-wrapper");
     // Prekių listo tikrinimas:
@@ -38,7 +38,7 @@ public class ManageShopBag extends BasePage{
     }
 
     public static void manageShopBag() {
-        WebDriverWait manageShopWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait manageShopWait = new WebDriverWait(driver, Duration.ofSeconds(25));
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(35))
                 .pollingEvery(Duration.ofSeconds(1))
@@ -46,20 +46,24 @@ public class ManageShopBag extends BasePage{
         try {
             WebElement shoppingBag1 = manageShopWait.until(ExpectedConditions.visibilityOfElementLocated(shoppingBag));
             shoppingBag1.click();
-            WebElement remove3Product = wait.until(ExpectedConditions.visibilityOfElementLocated
+            WebElement remove3Product = manageShopWait.until(ExpectedConditions.visibilityOfElementLocated
                     (removeProduct3));
+//            remove3Product.wait(3000);
             remove3Product.click();
         } catch (Exception e) {
             System.out.println("Remove Button not found");
         }
         try {
-            WebElement updateshopBag = wait.until(ExpectedConditions.visibilityOfElementLocated(updateshoppingBag));
+            WebElement updateshopBag = manageShopWait.until(ExpectedConditions.visibilityOfElementLocated(updateshoppingBag));
             updateshopBag.click();
+            Thread.sleep(5000);
+
             WebElement increase1 = wait.until(ExpectedConditions.visibilityOfElementLocated(increase));
             increase1.sendKeys(Keys.ENTER);
-            WebElement reduce1 = wait.until(ExpectedConditions.visibilityOfElementLocated(reduce));
+            Thread.sleep(5000);
+            WebElement reduce1 = manageShopWait.until(ExpectedConditions.visibilityOfElementLocated(reduce));
             reduce1.sendKeys(Keys.ENTER);
-            WebElement updateshopBag1 = wait.until(ExpectedConditions.visibilityOfElementLocated(updateshoppingBag));
+            WebElement updateshopBag1 = manageShopWait.until(ExpectedConditions.visibilityOfElementLocated(updateshoppingBag));
             updateshopBag1.click();
         } catch (Exception m) {
             System.out.println("Increase Button Not found");

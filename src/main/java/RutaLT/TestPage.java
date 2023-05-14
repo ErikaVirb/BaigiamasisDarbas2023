@@ -22,12 +22,14 @@ public class TestPage extends BasePage {
     private LoggingIn loggingIn;
     private ChangePassword changePassword;
     private ShoppingBag shoppingBag;
+    private ManageShopBag manageShopBag;
     private ChooseCheapestProducts chooseCheapestProducts;
     private ArraySearchProduct arraySearchProduct;
     private ProductsFilter productsFilter;
     ///////////////////////////////////////////////////////////////////////////////
+    private Trinti trinti;
     private BandymaiIstrinti bandymaiIstrinti;
-    private BandymaiPaprastiIštrinti bandymaiPaprastiIštrinti;
+//    private BandymaiPaprastiIštrinti bandymaiPaprastiIštrinti;
     /////////////////////////////////////////////////////////////////////////////////
 
     public TestPage() {
@@ -81,7 +83,7 @@ public class TestPage extends BasePage {
         BasePage.goTo();
         Registration.acceptCookie();
         PopUpSubscription.subscription();
-        BandymaiPaprastiIštrinti.listas();
+//        BandymaiPaprastiIštrinti.listas();
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
@@ -93,7 +95,7 @@ public class TestPage extends BasePage {
         ShoppingBag.chooseFirstProduct();
         ShoppingBag.chooseSecondProduct();
         ShoppingBag.chooseThirdProduct();
-        ShoppingBag.manageShopBag();
+        ManageShopBag.manageShopBag();
 
         }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,8 +104,8 @@ public class TestPage extends BasePage {
         BasePage.goTo();
         Registration.acceptCookie();
         PopUpSubscription.subscription();
-        ProductsFilter.smollestPrice();
-//        ProductsFilter.biggestPrice();
+        ProductsFilter.biggestPriceDescending();
+        ProductsFilter.smollestPriceAscending();
     }
     @Test
     public void ArraySearchProduct() throws IOException {
@@ -112,6 +114,7 @@ public class TestPage extends BasePage {
         PopUpSubscription.subscription();
         ArraySearchProduct.searchByTitle();
     }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void BandymaiArraySearchProduct() throws IOException {
         BasePage.goTo();
