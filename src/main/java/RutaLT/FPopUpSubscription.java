@@ -15,14 +15,14 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 
-public class PopUpSubscription extends BasePage {
+public class FPopUpSubscription extends BasePage {
 
     private static final By iframe = By.cssSelector("#ml-webforms-popup-5855857");
     private static final By popUpEmailInput = By.cssSelector(".form-control");
     private static final By popUpsCloseAfterSubscription = By.cssSelector("div.ml-popup:nth-child(2) > button:nth-child(1)");
     private static final By subscribeButton1 = By.cssSelector("button.btn:nth-child(1)");
 
-    public PopUpSubscription() {
+    public FPopUpSubscription() {
         super(driver, firefoxDriver);
     }
 
@@ -31,7 +31,7 @@ public class PopUpSubscription extends BasePage {
         // VEIKIA KAIP PASPAUDIMAS KAMPUTYJE (palikti):
         try {
             Thread.sleep(5000);
-            Actions actions = new Actions(driver);
+            Actions actions = new Actions(firefoxDriver);
             actions.moveByOffset(0, 0).click().build().perform();
         } catch (Exception e) {
             System.out.println("Nerastas popupas");
@@ -40,7 +40,7 @@ public class PopUpSubscription extends BasePage {
         Date currentDate = new Date();
         String dateTime = dateFormat.format(currentDate);
         String fileName = "screenshot-" + dateTime + ".png";
-        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        File screenshotFile = ((TakesScreenshot)firefoxDriver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
                 "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
     }
@@ -48,22 +48,22 @@ public class PopUpSubscription extends BasePage {
     public static void subscription() throws IOException {
 
 
-        WebDriverWait milerWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait milerWait = new WebDriverWait(firefoxDriver, Duration.ofSeconds(20));
         try {
             WebElement mailerIframe = milerWait.until(ExpectedConditions.visibilityOfElementLocated(iframe));
-            driver.switchTo().frame(mailerIframe);
+            firefoxDriver.switchTo().frame(mailerIframe);
 
-            WebElement subscribeButton = driver.findElement(popUpEmailInput);
+            WebElement subscribeButton = firefoxDriver.findElement(popUpEmailInput);
             subscribeButton.sendKeys("virginija.petruliene@yahoo.com");
             Thread.sleep(5000);
 
-            WebElement closeIframe = driver.findElement(subscribeButton1);
+            WebElement closeIframe = firefoxDriver.findElement(subscribeButton1);
             closeIframe.click();
 
             WebElement popUpClose = milerWait.until(ExpectedConditions.visibilityOfElementLocated(popUpsCloseAfterSubscription));
             popUpClose.click();
 
-            driver.switchTo().defaultContent();
+            firefoxDriver.switchTo().defaultContent();
 
         } catch (Exception e) {
             System.out.println("Miler Lite Frame not in display");
@@ -72,7 +72,7 @@ public class PopUpSubscription extends BasePage {
         Date currentDate = new Date();
         String dateTime = dateFormat.format(currentDate);
         String fileName = "screenshot-" + dateTime + ".png";
-        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        File screenshotFile = ((TakesScreenshot)firefoxDriver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
                 "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
     }

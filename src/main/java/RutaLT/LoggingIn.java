@@ -1,11 +1,15 @@
 package RutaLT;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
 public class LoggingIn extends BasePage{
 
@@ -18,7 +22,7 @@ public class LoggingIn extends BasePage{
     private static final By errorText = By.cssSelector(".input-error");
 
     public LoggingIn() {
-        super(driver);
+        super(driver, firefoxDriver);
     }
 
     public static void loggingIn() throws IOException {
@@ -46,9 +50,13 @@ public class LoggingIn extends BasePage{
         } catch (Exception e) {
             System.out.println("Connect button not found.");
         }
-//        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//        Path destinationPath = Paths.get("sreenshot.png");
-//        Files.copy(screenshotFile.toPath(), destinationPath);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+        Date currentDate = new Date();
+        String dateTime = dateFormat.format(currentDate);
+        String fileName = "screenshot-" + dateTime + ".png";
+        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
     }
     public static void incorrectDatalogingIn() throws IOException {
 
@@ -84,6 +92,13 @@ public class LoggingIn extends BasePage{
         } catch (Exception e) {
             System.out.println("Connect button not found.");
         }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+        Date currentDate = new Date();
+        String dateTime = dateFormat.format(currentDate);
+        String fileName = "screenshot-" + dateTime + ".png";
+        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
 
     }
 }

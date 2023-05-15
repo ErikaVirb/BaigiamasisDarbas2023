@@ -17,17 +17,17 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertEquals;
-public class ArraySearchProduct extends BasePage {
+public class FArraySearchProduct extends BasePage {
 
 
-    public ArraySearchProduct() {
+    public FArraySearchProduct() {
         super(driver, firefoxDriver);
     }
 
     static void searchByTitle() {
         String[] searchTitles = {"traškučiai", "dražė", "apelsinų"};
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(firefoxDriver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".woocommerce-LoopProduct-" +
                 "link.woocommerce-loop-product__link")));
 
@@ -36,13 +36,13 @@ public class ArraySearchProduct extends BasePage {
         List<String> productList3 = new ArrayList<>();
 
         for (String title : searchTitles) {
-            driver.get("https://www.ruta.lt/");
+            firefoxDriver.get("https://www.ruta.lt/");
 
-            WebElement searchBox = driver.findElement(By.cssSelector("#woocommerce-product-search-field-0"));
+            WebElement searchBox = firefoxDriver.findElement(By.cssSelector("#woocommerce-product-search-field-0"));
             searchBox.sendKeys(title);
             searchBox.submit();
 
-            List<WebElement> productTitles = driver.findElements(By.cssSelector(".woocommerce-LoopProduct-link" +
+            List<WebElement> productTitles = firefoxDriver.findElements(By.cssSelector(".woocommerce-LoopProduct-link" +
                     ".woocommerce-loop-product__link"));
             List<String> productList = null;
             if (title.equals("traškučiai")) {

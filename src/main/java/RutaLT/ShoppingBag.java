@@ -1,14 +1,18 @@
 package RutaLT;
 
 import com.google.common.base.Function;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 
 public class ShoppingBag extends BasePage {
@@ -44,7 +48,7 @@ public class ShoppingBag extends BasePage {
 
 
     public ShoppingBag() {
-        super(driver);
+        super(driver, firefoxDriver);
     }
 
 
@@ -67,6 +71,17 @@ public class ShoppingBag extends BasePage {
             chocolateFigButton.click();
         } catch (Exception e) {
             System.out.println("Chocolate Figures Button not in display");
+        }
+        try{
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+            Date currentDate = new Date();
+            String dateTime = dateFormat.format(currentDate);
+            String fileName = "screenshot-" + dateTime + ".png";
+            File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+        }catch (Exception k){
+            System.out.println("Screenshots disabled");
         }
     }
 
@@ -99,6 +114,17 @@ public class ShoppingBag extends BasePage {
         } catch (Exception e) {
             System.out.println("Plus One Button not in display");
         }
+        try{
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+            Date currentDate = new Date();
+            String dateTime = dateFormat.format(currentDate);
+            String fileName = "screenshot-" + dateTime + ".png";
+            File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+        }catch (Exception k){
+            System.out.println("Screenshots disabled");
+        }
     }
 
     public static void chooseSecondProduct() throws IOException {
@@ -123,6 +149,17 @@ public class ShoppingBag extends BasePage {
             driver.navigate().back();
         } catch (Exception e) {
             System.out.println("Product: Chocolate car not in display");
+        }
+        try{
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+            Date currentDate = new Date();
+            String dateTime = dateFormat.format(currentDate);
+            String fileName = "screenshot-" + dateTime + ".png";
+            File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+        }catch (Exception k){
+            System.out.println("Screenshots disabled");
         }
     }
 
@@ -161,6 +198,17 @@ public class ShoppingBag extends BasePage {
             addToCart2.click();
         } catch (Exception r) {
             System.out.println("Product: Button not in displayed");
+        }
+        try{
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+            Date currentDate = new Date();
+            String dateTime = dateFormat.format(currentDate);
+            String fileName = "screenshot-" + dateTime + ".png";
+            File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+        }catch (Exception k){
+            System.out.println("Screenshots disabled");
         }
     }
 }

@@ -1,13 +1,17 @@
 package RutaLT;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ProductsFilter extends BasePage {
@@ -18,7 +22,7 @@ public class ProductsFilter extends BasePage {
     private static final By sortByDropDownBig = By.cssSelector(".orderby");
 
     public ProductsFilter() {
-        super(driver);
+        super(driver, firefoxDriver);
     }
 
     public static void biggestPriceDescending() {
@@ -80,16 +84,36 @@ public class ProductsFilter extends BasePage {
         System.out.println("'Biggest' Prices layout : " + numbers);
 
         boolean isDescending = true;
+
+//        for (int i = 1; i < numbers.size(); i++) {
+//            if (Double.parseDouble(numbers.get(i)) > Double.parseDouble(numbers.get(i-1))) {
+//                isDescending = false;
+//                break;
+//            }
+//        }
         for (int i = 1; i < numbers.size(); i++) {
-            if (Double.parseDouble(numbers.get(i)) > Double.parseDouble(numbers.get(i-1))) {
-                isDescending = false;
-                break;
+            if (!numbers.get(i).isEmpty() && !numbers.get(i-1).isEmpty()) {
+                if (Double.parseDouble(numbers.get(i)) > Double.parseDouble(numbers.get(i-1))) {
+                    isDescending = false;
+                    break;
+                }
             }
         }
         if (isDescending) {
             System.out.println("The numbers are in descending order");
         } else {
             System.out.println("The numbers are not in descending order");
+        }
+        try{
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+            Date currentDate = new Date();
+            String dateTime = dateFormat.format(currentDate);
+            String fileName = "screenshot-" + dateTime + ".png";
+            File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+        }catch (Exception k){
+            System.out.println("Screenshots disabled");
         }
     }
     public static void smollestPriceAscending(){
@@ -120,17 +144,38 @@ public class ProductsFilter extends BasePage {
         }
         System.out.println("'Smollest' Prices layout : " + numbers);
 
+//        boolean isAscending = true;
+//        for (int i = 1; i < numbers.size(); i++) {
+//            if (Double.parseDouble(numbers.get(i)) < Double.parseDouble(numbers.get(i-1))) {
+//                isAscending = false;
+//                break;
+//            }
+//        }
         boolean isAscending = true;
         for (int i = 1; i < numbers.size(); i++) {
-            if (Double.parseDouble(numbers.get(i)) < Double.parseDouble(numbers.get(i-1))) {
+            String current = numbers.get(i);
+            String previous = numbers.get(i-1);
+            if (!current.isEmpty() && !previous.isEmpty() && Double.parseDouble(current) < Double.parseDouble(previous)) {
                 isAscending = false;
                 break;
             }
         }
+
         if (isAscending) {
             System.out.println("The numbers are in ascending order");
         } else {
             System.out.println("The numbers are not in ascending order");
+        }
+        try{
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+            Date currentDate = new Date();
+            String dateTime = dateFormat.format(currentDate);
+            String fileName = "screenshot-" + dateTime + ".png";
+            File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+        }catch (Exception k){
+            System.out.println("Screenshots disabled");
         }
     }
 }

@@ -1,5 +1,6 @@
 package RutaLT;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -35,7 +36,7 @@ public class Registration extends BasePage {
 
 
     public Registration() {
-        super(driver);
+        super(driver, firefoxDriver);
     }
 
     public static <SimpleDataFormat> void acceptCookie() throws IOException {
@@ -47,11 +48,18 @@ public class Registration extends BasePage {
             System.out.println("PopUp not displayd");
         }
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+        Date currentDate = new Date();
+        String dateTime = dateFormat.format(currentDate);
+        String fileName = "screenshot-" + dateTime + ".png";
+        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
 
 //        SimpleDataFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
 //        String timestamp = ((SimpleDateFormat) formatter).format(new Date());
 //
-//        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE); ///////////
 //        try{
 //        String screenshotPath = "D:\\Mano\\Mokslai\\IT mokymai\\Baigiamasis2023\\ScreenshotFilesreenshot.png" +
 //                timestamp + "_screenshot";
@@ -60,7 +68,7 @@ public class Registration extends BasePage {
 //        } catch (Exception e){
 //            System.out.println("Screenshot already exists");
 //        }
-//
+
 //        driver.quit();
     }
 
@@ -76,11 +84,11 @@ public class Registration extends BasePage {
 //                String emailData = "registracija.registration@gmail.com";
 //                String emailData = "registrac.registration@gmail.com";
 //                String emailData = "registrac.registration@yahoo.com";
-                String emailData = "registr.registr@gmail.com";
+                String emailData = "reg.reg@gmail.com";
                 emailField.sendKeys(emailData);
                 //  Pasiemam teksta tik iki @ simbolio
                 String emailFieldValue = emailField.getAttribute("value");
-                String expectedPrefix = "registr.registr";
+                String expectedPrefix = "reg.reg";
                 String actualPrefix = emailFieldValue.substring(0, emailFieldValue.indexOf("@"));
                 WebElement registrButton = driver.findElement(registrationButton);
                 registrButton.click();
@@ -106,10 +114,13 @@ public class Registration extends BasePage {
             } catch (Exception e) {
                 System.out.println("Greeting text not found. ");
             }
-
-//            File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//            Path destinationPath = Paths.get("sreenshot.png");
-//            Files.copy(screenshotFile.toPath(), destinationPath);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+            Date currentDate = new Date();
+            String dateTime = dateFormat.format(currentDate);
+            String fileName = "screenshot-" + dateTime + ".png";
+            File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
         }
         public static void alreadyExistingEmailRegistration() throws IOException{
 
@@ -129,12 +140,14 @@ public class Registration extends BasePage {
             } catch (Exception e) {
                 System.out.println("Email Field is not found. ");
             }
-
-//            File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//            Path destinationPath = Paths.get("sreenshot.png");
-//            Files.copy(screenshotFile.toPath(), destinationPath);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+            Date currentDate = new Date();
+            String dateTime = dateFormat.format(currentDate);
+            String fileName = "screenshot-" + dateTime + ".png";
+            File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
 
 //            driver.quit();
         }
-//
     }

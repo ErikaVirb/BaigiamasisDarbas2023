@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 public class SuzinotaButinaPasilikt extends BasePage{
     public SuzinotaButinaPasilikt() {
-        super(driver);
+        super(driver, firefoxDriver);
     }
     public static void pavyzdziai(){
 
