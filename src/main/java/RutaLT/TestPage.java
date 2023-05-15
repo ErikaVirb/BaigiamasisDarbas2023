@@ -22,14 +22,13 @@ public class TestPage extends BasePage {
     private LoggingIn loggingIn;
     private ChangePassword changePassword;
     private ShoppingBag shoppingBag;
-    private ManageShopBag manageShopBag;
-    private ChooseCheapestProducts chooseCheapestProducts;
-    private ArraySearchProduct arraySearchProduct;
     private ProductsFilter productsFilter;
+    private ManageShopBag manageShopBag;
+    private ArraySearchProduct arraySearchProduct;
+
     ///////////////////////////////////////////////////////////////////////////////
     private Trinti trinti;
     private BandymaiIstrinti bandymaiIstrinti;
-//    private BandymaiPaprastiIštrinti bandymaiPaprastiIštrinti;
     /////////////////////////////////////////////////////////////////////////////////
 
     public TestPage() {
@@ -76,18 +75,8 @@ public class TestPage extends BasePage {
 //        ChangePassword.changePassword();
 //        LoggingIn.incorrectDatalogingIn();
     }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
-    public void bandymaiPaprastiIštrinti() throws IOException {
-        BasePage.goTo();
-        Registration.acceptCookie();
-        PopUpSubscription.subscription();
-//        BandymaiPaprastiIštrinti.listas();
-    }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    @Test
-    public void shoppingBag() throws IOException {
+    public void shoppingBag() throws IOException { // NEVEIKIA. Pastringa testas.
         BasePage.goTo();
         Registration.acceptCookie();
         PopUpSubscription.subscription();
@@ -98,44 +87,21 @@ public class TestPage extends BasePage {
         ManageShopBag.manageShopBag();
 
         }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
-    public void productsFilter() throws IOException {
-        BasePage.goTo();
-        Registration.acceptCookie();
-        PopUpSubscription.subscription();
-        ProductsFilter.biggestPriceDescending();
-        ProductsFilter.smollestPriceAscending();
-    }
-    @Test
-    public void ArraySearchProduct() throws IOException {
-        BasePage.goTo();
-        Registration.acceptCookie();
-        PopUpSubscription.subscription();
-        ArraySearchProduct.searchByTitle();
-    }
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    @Test
-    public void BandymaiArraySearchProduct() throws IOException {
-        BasePage.goTo();
-        Registration.acceptCookie();
-        PopUpSubscription.subscription();
-        BandymaiIstrinti.ArraySearchProductBandymai();
-    }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    @Test
-    public void chooseCheapestProducts() throws IOException {
-        BasePage.goTo();
-        Registration.acceptCookie();
-        PopUpSubscription.subscription();
-        ChooseCheapestProducts.list();
-}
-//    @Test
-//    public void listOfProducts() throws IOException {
+    public void productsFilter() throws IOException { // VEIKIA. DAR REIKIA: screenshots;
 //        BasePage.goTo();
 //        Registration.acceptCookie();
-//        ChooseCheapestProducts.list();
-//    }
+//        PopUpSubscription.subscription();
+//        ProductsFilter.biggestPriceDescending();
+//        ProductsFilter.smollestPriceAscending();
+    }
+    @Test
+    public void ArraySearchProduct() throws IOException { // VEIKIA. DAR REIKIA: screenshots;
+//        BasePage.goTo();
+//        Registration.acceptCookie();
+//        PopUpSubscription.subscription();
+//        ArraySearchProduct.searchByTitle();
+    }
     @Test
     public void listComparison() throws IOException {
 //        List<String> list1 = new ArrayList<>();

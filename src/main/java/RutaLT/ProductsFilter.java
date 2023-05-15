@@ -30,18 +30,6 @@ public class ProductsFilter extends BasePage {
                 .ignoring(NoSuchElementException.class);
         WebElement eShopButton1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eShopButton));
         eShopButton1.click();
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //PAVADINIMAI. Veikia, ir viską sukelia į vieną array Listą.
-        List<String> productNames = new ArrayList<>();
-        List<WebElement> products = driver.findElements(By.cssSelector(".woocommerce-LoopProduct-link.woocommerce" +
-                "-loop-product__link"));
-
-        for (WebElement product : products) {
-            String productName = product.getText();
-            productNames.add(productName);
-        }
-        System.out.println("Titles: " + productNames);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Skaičiams int formatu ir be valiutos simbolio:
 //        List<Integer> numbers = new ArrayList<>();
