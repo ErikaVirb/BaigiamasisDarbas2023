@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 public class SuzinotaButinaPasilikt extends BasePage{
     public SuzinotaButinaPasilikt() {
-        super(driver, firefoxDriver);
+        super(driver);
     }
     public static void pavyzdziai(){
 
@@ -29,7 +29,7 @@ public class SuzinotaButinaPasilikt extends BasePage{
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //        String[] searchTitles = {"traškučiai", "dražė", "apelsinų"};
 //
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebDriverWait wait = new WebDriverWait(chromeDriver, Duration.ofSeconds(10));
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".woocommerce-LoopProduct-" +
 //                "link.woocommerce-loop-product__link")));
 //
@@ -38,13 +38,13 @@ public class SuzinotaButinaPasilikt extends BasePage{
 //        List<String> productList3 = new ArrayList<>();
 //
 //        for (String title : searchTitles) {
-//            driver.get("https://www.ruta.lt/");
+//            chromeDriver.get("https://www.ruta.lt/");
 //
-//            WebElement searchBox = driver.findElement(By.cssSelector("#woocommerce-product-search-field-0"));
+//            WebElement searchBox = chromeDriver.findElement(By.cssSelector("#woocommerce-product-search-field-0"));
 //            searchBox.sendKeys(title);
 //            searchBox.submit();
 //
-//            List<WebElement> productTitles = driver.findElements(By.cssSelector(".woocommerce-LoopProduct" +
+//            List<WebElement> productTitles = chromeDriver.findElements(By.cssSelector(".woocommerce-LoopProduct" +
 //                    "-link.woocommerce-loop-product__link"));
 //            for (WebElement productTitle : productTitles) {
 //                String productName = productTitle.getText();
@@ -96,7 +96,7 @@ public class SuzinotaButinaPasilikt extends BasePage{
 //
 //        String[] searchTitles = {"traškučiai", "dražė", "apelsinų"};
 //
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebDriverWait wait = new WebDriverWait(chromeDriver, Duration.ofSeconds(10));
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".woocommerce-LoopProduct-" +
 //                "link.woocommerce-loop-product__link")));
 //
@@ -105,12 +105,12 @@ public class SuzinotaButinaPasilikt extends BasePage{
 //        List<String> productList3 = new ArrayList<>();
 //
 //        for (String title : searchTitles) {
-//            driver.get("https://www.ruta.lt/");
+//            chromeDriver.get("https://www.ruta.lt/");
 //
-//            WebElement searchBox = driver.findElement(By.cssSelector("#woocommerce-product-search-field-0"));
+//            WebElement searchBox = chromeDriver.findElement(By.cssSelector("#woocommerce-product-search-field-0"));
 //            searchBox.sendKeys(title);
 //            searchBox.submit();
-//            List<WebElement> productTitles = driver.findElements(By.cssSelector(".woocommerce-LoopProduct-link." +
+//            List<WebElement> productTitles = chromeDriver.findElements(By.cssSelector(".woocommerce-LoopProduct-link." +
 //                    "woocommerce-loop-product__link"));
 //
 //            for (WebElement productTitle : productTitles) {
@@ -152,7 +152,7 @@ public class SuzinotaButinaPasilikt extends BasePage{
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //        // Sukuria tris listus ir sudeda visų tryjų ieškomų žodžių paieškų rezultatus į tris atskirus listus:
 //        String[] searchTitles = {"traškučiai", "dražė", "apelsinų"};
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebDriverWait wait = new WebDriverWait(chromeDriver, Duration.ofSeconds(10));
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".woocommerce-LoopProduct-" +
 //                "link.woocommerce-loop-product__link")));
 //
@@ -161,13 +161,13 @@ public class SuzinotaButinaPasilikt extends BasePage{
 //        List<String> productList3 = new ArrayList<>();
 //
 //        for (String title : searchTitles) {
-//            driver.get("https://www.ruta.lt/");
+//            chromeDriver.get("https://www.ruta.lt/");
 //
-//            WebElement searchBox = driver.findElement(By.cssSelector("#woocommerce-product-search-field-0"));
+//            WebElement searchBox = chromeDriver.findElement(By.cssSelector("#woocommerce-product-search-field-0"));
 //            searchBox.sendKeys(title);
 //            searchBox.submit();
 //
-//            List<WebElement> productTitles = driver.findElements(By.cssSelector(".woocommerce-LoopProduct-link." +
+//            List<WebElement> productTitles = chromeDriver.findElements(By.cssSelector(".woocommerce-LoopProduct-link." +
 //                    "woocommerce-loop-product__link"));
 //            for (WebElement productTitle : productTitles) {
 //                String productName = productTitle.getText();
@@ -203,17 +203,17 @@ public class SuzinotaButinaPasilikt extends BasePage{
 //        try {
 //
 //            for (String searchTitle : searchTitles) {
-//                driver.get("https://www.ruta.lt/");
+//                chromeDriver.get("https://www.ruta.lt/");
 //
-//                WebElement searchInput = driver.findElement(By.cssSelector("#woocommerce-product-search-field-0"));
+//                WebElement searchInput = chromeDriver.findElement(By.cssSelector("#woocommerce-product-search-field-0"));
 //                searchInput.sendKeys(searchTitle);
 //                searchInput.submit();
-//                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//                WebDriverWait wait = new WebDriverWait(chromeDriver, Duration.ofSeconds(10));
 //                wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".woocommerce-LoopProduct-" +
 //                        "link.woocommerce-loop-product__link")));
 //
 //                // Extract the product titles from the search results
-//                List<WebElement> productElements = driver.findElements(By.cssSelector(".woocommerce-LoopProduct-" +
+//                List<WebElement> productElements = chromeDriver.findElements(By.cssSelector(".woocommerce-LoopProduct-" +
 //                        "link.woocommerce-loop-product__link"));
 //
 ////                System.out.println("SEARCH RESULTS FOR: " + searchTitle);
@@ -223,17 +223,17 @@ public class SuzinotaButinaPasilikt extends BasePage{
 //                }
 //
 ////                System.out.println("SEARCH RESULTS FOR: " + searchTitle + "  SEARCH RESULTS LIST. ");
-////                System.out.println(driver.getTitle());
+////                System.out.println(chromeDriver.getTitle());
 //            }
 //        }catch (Exception k){
 //            System.out.println("List not found");
 //        }
-//        driver.quit();
+//        chromeDriver.quit();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //        //PAVADINIMAI. Veikia, ir viską sukelia į vieną array Listą.
 //        try {
 //            List<String> productNames = new ArrayList<>();
-//            List<WebElement> products = driver.findElements(By.cssSelector(".woocommerce-LoopProduct-link. +
+//            List<WebElement> products = chromeDriver.findElements(By.cssSelector(".woocommerce-LoopProduct-link. +
 //            woocommerce-loop-product__link"));
 //
 //            for (WebElement product : products) {
@@ -245,5 +245,22 @@ public class SuzinotaButinaPasilikt extends BasePage{
 //            System.out.println("");
 //        }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //    @Test
+//    public void listComparison() throws IOException {
+////        List<String> list1 = new ArrayList<>();
+////        list1.add("Dog");
+////        list1.add("Cat");
+////        list1.add("Monkey");
+////        list1.add("Horse");
+////
+////        List<String> list2 = new ArrayList<>();
+////        list2.add("Cat");
+////        list2.add("Dog");
+////        list2.add("Monkey");
+////        list2.add("Horse");
+////
+////        assertArrayEquals(list1.toArray(), list2.toArray());
+//    }
+
     }
 }

@@ -37,8 +37,7 @@ public class ShoppingBag extends BasePage {
     private static final By blackChocolate = By.xpath("/html/body/div[1]/main/div/div[1]/div/aside" +
             "/ul/li[3]/ul/li[2]/a");
     // Dedame prekes į krepšelį po 2vnt:
-    private static final By product1 = By.linkText("Juodojo šokolado (50 %) figūrų rinkinys „Šokoladiniai " +
-            "įrankiai“, 160 g");
+    private static final By product1 = By.linkText("Juodojo šokolado (50 %) figūra „Zuikutis“, 100 g");
     private static final By product2 = By.xpath("//a[contains(text(),'Pieninio šokolado figūra " +
             "„Mašinėlė“, 150 g')]");
     private static final By product3 = By.linkText("Juodojo šokolado saldainiai „Raimonda“, 680 g");
@@ -46,10 +45,12 @@ public class ShoppingBag extends BasePage {
             "[2]/form/div[1]/input[3]");
     private static final By addToCart = By.cssSelector(".single_add_to_cart_button");
 
-
     public ShoppingBag() {
-        super(driver, firefoxDriver);
+        super(driver);
     }
+//    public ShoppingBag() {
+//        super(driver, firefoxDriver);
+//    }
 
 
     public static void eShopChoseCategory() throws IOException {
@@ -88,7 +89,7 @@ public class ShoppingBag extends BasePage {
     public static void chooseFirstProduct() throws IOException {
 
 
-        // Pirma prekė (Šokoladiniai įrankiai):
+        // Pirma prekė (zuikutis):
         WebDriverWait eShopButtonWait1 = new WebDriverWait(driver, Duration.ofSeconds(15));
         try {
             JavascriptExecutor js1 = (JavascriptExecutor) driver;
@@ -167,7 +168,8 @@ public class ShoppingBag extends BasePage {
 
 
         // Einame į e.Parduotuvę, išsirenkam kategoriją "Desertiniai saldainiai":
-        WebDriverWait eShopButtonWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait eShopButtonWait = new WebDriverWait(driver, Duration.ofSeconds(35));
+
         try {
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollTo(0, 0)");

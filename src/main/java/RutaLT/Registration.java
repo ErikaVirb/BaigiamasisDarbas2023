@@ -32,14 +32,14 @@ public class Registration extends BasePage {
     private static final By disconnectButton = By.cssSelector("ul[class='account-nav nav nav-line nav-uppercase " +
             "nav-vertical mt-half'] li[class='woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation" +
             "-link--customer-logout'] a");
-    private static final By greetingText = By.cssSelector("strong:nth-child(1)");
+    private static final By greetingText = By.cssSelector("body div strong:nth-child(1)");//strong:nth-child(1)
 
 
     public Registration() {
-        super(driver, firefoxDriver);
+        super(driver);
     }
 
-    public static <SimpleDataFormat> void acceptCookie() throws IOException {
+    public static void acceptCookie() throws IOException {
 
         try {
             WebElement cookieAccept = driver.findElement(cookieButton);
@@ -48,34 +48,22 @@ public class Registration extends BasePage {
             System.out.println("PopUp not displayd");
         }
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
-        Date currentDate = new Date();
-        String dateTime = dateFormat.format(currentDate);
-        String fileName = "screenshot-" + dateTime + ".png";
-        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
-                "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
-
-//        SimpleDataFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
-//        String timestamp = ((SimpleDateFormat) formatter).format(new Date());
-//
-//        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE); ///////////
-//        try{
-//        String screenshotPath = "D:\\Mano\\Mokslai\\IT mokymai\\Baigiamasis2023\\ScreenshotFilesreenshot.png" +
-//                timestamp + "_screenshot";
-//        Path destinationPath = Path.of(screenshotPath);
-//        Files.copy(screenshotFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-//        } catch (Exception e){
-//            System.out.println("Screenshot already exists");
+//        try {
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+//            Date currentDate = new Date();
+//            String dateTime = dateFormat.format(currentDate);
+//            String fileName = "screenshot-" + dateTime + ".png";
+//            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+//                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+//        } catch (Exception e) {
+//            System.out.println("Screenshot disabled");
 //        }
-
-//        driver.quit();
     }
-
         public static void registrations() throws IOException {
 
 
-            WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+            WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(25));
             try {
                 WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated
                         (myAccountButton));
@@ -83,23 +71,23 @@ public class Registration extends BasePage {
                 WebElement emailField = driver.findElement(regEmail);
 //                String emailData = "registracija.registration@gmail.com";
 //                String emailData = "registrac.registration@gmail.com";
-//                String emailData = "registrac.registration@yahoo.com";
-                String emailData = "reg.reg@gmail.com";
+                String emailData = "parduotuve.parduotuve@yahoo.com";
                 emailField.sendKeys(emailData);
                 //  Pasiemam teksta tik iki @ simbolio
                 String emailFieldValue = emailField.getAttribute("value");
-                String expectedPrefix = "reg.reg";
+                String expectedPrefix = "parduotuve.parduotuve";
                 String actualPrefix = emailFieldValue.substring(0, emailFieldValue.indexOf("@"));
                 WebElement registrButton = driver.findElement(registrationButton);
                 registrButton.click();
 
                 Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(20))
+                .withTimeout(Duration.ofSeconds(35))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
 
                 WebElement grText = wait.until(ExpectedConditions.visibilityOfElementLocated(greetingText));
                 String textValue = grText.getText();
+                Thread.sleep(2000);
 
                 if (expectedPrefix.equals(actualPrefix) && actualPrefix.equals(textValue)) {
                     System.out.println("The email field value and the text value are the same.");
@@ -114,18 +102,22 @@ public class Registration extends BasePage {
             } catch (Exception e) {
                 System.out.println("Greeting text not found. ");
             }
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
-            Date currentDate = new Date();
-            String dateTime = dateFormat.format(currentDate);
-            String fileName = "screenshot-" + dateTime + ".png";
-            File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
-                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+                Date currentDate = new Date();
+                String dateTime = dateFormat.format(currentDate);
+                String fileName = "screenshot-" + dateTime + ".png";
+                File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                        "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+            }catch (Exception e){
+                System.out.println("Screenshot disabled");
+            }
         }
         public static void alreadyExistingEmailRegistration() throws IOException{
 
 
-            WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(15));
             try {
                 WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated
                         (myAccountButton));
@@ -140,14 +132,17 @@ public class Registration extends BasePage {
             } catch (Exception e) {
                 System.out.println("Email Field is not found. ");
             }
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
-            Date currentDate = new Date();
-            String dateTime = dateFormat.format(currentDate);
-            String fileName = "screenshot-" + dateTime + ".png";
-            File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
-                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+                Date currentDate = new Date();
+                String dateTime = dateFormat.format(currentDate);
+                String fileName = "screenshot-" + dateTime + ".png";
+                File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                        "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+            }catch (Exception o){
+                System.out.println("Screenshot disabled");
+            }
 
-//            driver.quit();
         }
     }

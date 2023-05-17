@@ -1,6 +1,4 @@
 package RutaLT;
-
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,9 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.Date;
 
 public class PopUpSubscription extends BasePage {
 
@@ -23,7 +19,7 @@ public class PopUpSubscription extends BasePage {
     private static final By subscribeButton1 = By.cssSelector("button.btn:nth-child(1)");
 
     public PopUpSubscription() {
-        super(driver, firefoxDriver);
+        super(driver);
     }
 
     public static void subscriptClick() throws IOException {
@@ -36,13 +32,13 @@ public class PopUpSubscription extends BasePage {
         } catch (Exception e) {
             System.out.println("Nerastas popupas");
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
-        Date currentDate = new Date();
-        String dateTime = dateFormat.format(currentDate);
-        String fileName = "screenshot-" + dateTime + ".png";
-        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
-                "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+//        Date currentDate = new Date();
+//        String dateTime = dateFormat.format(currentDate);
+//        String fileName = "screenshot-" + dateTime + ".png";
+//        File screenshotFile = ((TakesScreenshot)chromeDriver).getScreenshotAs(OutputType.FILE);
+//        FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+//                "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
     }
 
     public static void subscription() throws IOException {
@@ -68,14 +64,14 @@ public class PopUpSubscription extends BasePage {
         } catch (Exception e) {
             System.out.println("Miler Lite Frame not in display");
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
-        Date currentDate = new Date();
-        String dateTime = dateFormat.format(currentDate);
-        String fileName = "screenshot-" + dateTime + ".png";
-        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
-                "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+//        Date currentDate = new Date();
+//        String dateTime = dateFormat.format(currentDate);
+//        String fileName = "screenshot-" + dateTime + ".png";
+//        File screenshotFile = ((TakesScreenshot)chromeDriver).getScreenshotAs(OutputType.FILE);
+//        FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+//                "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
     }
-}
 
+}
 

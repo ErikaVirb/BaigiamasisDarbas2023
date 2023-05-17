@@ -22,9 +22,8 @@ public class LoggingIn extends BasePage{
     private static final By errorText = By.cssSelector(".input-error");
 
     public LoggingIn() {
-        super(driver, firefoxDriver);
+        super(driver);
     }
-
     public static void loggingIn() throws IOException {
 
 
@@ -50,13 +49,17 @@ public class LoggingIn extends BasePage{
         } catch (Exception e) {
             System.out.println("Connect button not found.");
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
-        Date currentDate = new Date();
-        String dateTime = dateFormat.format(currentDate);
-        String fileName = "screenshot-" + dateTime + ".png";
-        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
-                "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+            Date currentDate = new Date();
+            String dateTime = dateFormat.format(currentDate);
+            String fileName = "screenshot-" + dateTime + ".png";
+            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+        }catch (Exception o){
+            System.out.println("Screenshot disabled");
+        }
     }
     public static void incorrectDatalogingIn() throws IOException {
 
@@ -92,13 +95,17 @@ public class LoggingIn extends BasePage{
         } catch (Exception e) {
             System.out.println("Connect button not found.");
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
-        Date currentDate = new Date();
-        String dateTime = dateFormat.format(currentDate);
-        String fileName = "screenshot-" + dateTime + ".png";
-        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
-                "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+            Date currentDate = new Date();
+            String dateTime = dateFormat.format(currentDate);
+            String fileName = "screenshot-" + dateTime + ".png";
+            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+        }catch (Exception o){
+            System.out.println("Screenshot disabled");
+        }
 
     }
 }

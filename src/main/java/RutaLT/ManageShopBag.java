@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
@@ -31,22 +32,28 @@ public class ManageShopBag extends BasePage{
             "> span:nth-child(1)");
 
 
+//    public ManageShopBag() {
+//        super(driver, firefoxDriver);
+//    }
     public ManageShopBag() {
-        super(driver, firefoxDriver);
+        super(driver);
     }
 
-    public static void manageShopBag() {
+
+    public static void manageShopBag() throws IOException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
         Wait<WebDriver> fluentWait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(35))
-                .pollingEvery(Duration.ofSeconds(1))
+                .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         try {
             WebElement shoppingBagElement = wait.until(ExpectedConditions.visibilityOfElementLocated(shoppingBag));
             shoppingBagElement.click();
+            Thread.sleep(5000);
 
             WebElement removeProductElement = wait.until(ExpectedConditions.elementToBeClickable(removeProduct3));
             removeProductElement.click();
+            Thread.sleep(4000);
         } catch (Exception e) {
             System.out.println("Remove Button not found");
         }
@@ -54,23 +61,27 @@ public class ManageShopBag extends BasePage{
             WebElement updateShoppingBagElement = wait.until(ExpectedConditions.visibilityOfElementLocated
                     (updateshoppingBag));
             updateShoppingBagElement.click();
-//            Thread.sleep(5000);
+            Thread.sleep(6000);
 
             WebElement increaseElement = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(increase));
             increaseElement.sendKeys(Keys.ENTER);
-//            Thread.sleep(5000);
+            Thread.sleep(6000);
 
             WebElement reduceElement = wait.until(ExpectedConditions.visibilityOfElementLocated(reduce));
             reduceElement.sendKeys(Keys.ENTER);
+            Thread.sleep(4000);
 
             WebElement updateShoppingBagElement2 = wait.until(ExpectedConditions.visibilityOfElementLocated
                     (updateshoppingBag));
             updateShoppingBagElement2.click();
+            Thread.sleep(4000);
+
+
         } catch (Exception m) {
             System.out.println("Increase Button Not found");
         }
-        String expectedUpdateText = "Krepšelis atnaujintas";
-        String actualUpdateText = driver.findElement(updateMessageText).getText();
+            String expectedUpdateText = "Krepšelis atnaujintas";
+            String actualUpdateText = driver.findElement(updateMessageText).getText();
 
         if (actualUpdateText.contains(expectedUpdateText)) {
             System.out.println("The Update Text message is correct!");
@@ -126,20 +137,6 @@ public class ManageShopBag extends BasePage{
         }catch (Exception k){
             System.out.println("Screenshots disabled.");
         }
-////////////////////////////////////////////////////////////////////////////////////////////
-//            WebElement plusOne11 = driver.findElement(plusOne);
-//           if (plusOne11.isDisplayed()){ // dar gali būti : (plusOne11.isEnabled()). "Displayed" - matomas elementas,
-//                                                                                  // "Enabled" - ar elementas yra aktyvus
-//                                                                                  // (koks nors inputas arba mygtukas)
-//               plusOne11.click();
-//           }else{
-//               System.out.println("Increase by one Button is not displayed.");
-//           }
-        //            List<WebElement> krepselioLista = driver.findElements(productsBagList);
-//            for (WebElement lists : krepselioLista) {
-//                String title = lists.getText(); // Pašalina HTML "a" tagą ir gauna tik textą.
-//                System.out.println(title);
-//            }
-//////////////////////////////////////////////////////////////////////////////////////////////////
+
     }
 }

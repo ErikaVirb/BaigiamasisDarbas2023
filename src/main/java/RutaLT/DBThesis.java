@@ -17,7 +17,7 @@ public class DBThesis extends BasePage{
     private static Connection connection = null;
 
     public DBThesis() {
-        super(driver, firefoxDriver);
+        super(driver);
     }
     public static void main(String[] args) throws SQLException {
 

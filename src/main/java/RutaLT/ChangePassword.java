@@ -1,5 +1,4 @@
 package RutaLT;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -26,7 +25,7 @@ public class ChangePassword extends BasePage{
     private static final By saveChangesButton = By.cssSelector("button[value='Išsaugoti pakeitimus']");
     private static final By disconnect = By.cssSelector("#my-account-nav > li:nth-child(5) > a:nth-child(1)");
     public ChangePassword() {
-        super(driver, firefoxDriver);
+        super(driver);
     }
 
 
@@ -89,12 +88,16 @@ public class ChangePassword extends BasePage{
         } catch (Exception e) {
             System.out.println("Save Changes Button is not displayed");
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
-        Date currentDate = new Date();
-        String dateTime = dateFormat.format(currentDate);
-        String fileName = "screenshot-" + dateTime + ".png";
-        File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
-                "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+            Date currentDate = new Date();
+            String dateTime = dateFormat.format(currentDate);
+            String fileName = "screenshot-" + dateTime + ".png";
+            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                    "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+        }catch (Exception o){
+            System.out.println("Screenshot disabled");
+        }
     }
 }

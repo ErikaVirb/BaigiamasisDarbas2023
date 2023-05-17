@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -22,10 +23,12 @@ public class ProductsFilter extends BasePage {
     private static final By sortByDropDownBig = By.cssSelector(".orderby");
 
     public ProductsFilter() {
-        super(driver, firefoxDriver);
+        super(driver);
     }
-
-    public static void biggestPriceDescending() {
+//    public ProductsFilter() {
+//        super(driver, firefoxDriver);
+//    }
+    public static void biggestPriceDescending() throws IOException {
 
 
         Wait<WebDriver> wait = new FluentWait<>(driver)
@@ -70,12 +73,23 @@ public class ProductsFilter extends BasePage {
             sortByDropDown1.sendKeys(Keys.DOWN);
             sortByDropDown1.sendKeys(Keys.DOWN);
             sortByDropDown1.sendKeys(Keys.ENTER);
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+                Date currentDate = new Date();
+                String dateTime = dateFormat.format(currentDate);
+                String fileName = "screenshot-" + dateTime + ".png";
+                File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+                        "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+            }catch (Exception o){
+                System.out.println("Screenshot disabled");
+            }
         } catch (Exception e) {
             System.out.println("Biggest Price dropdown list not found.");
         }
         // KAINOS: Su Original Prices layout.
         List<WebElement> webElements = driver.findElements(By.cssSelector(".woocommerce-Price-amount.amount"));
-        List<String> numbers = new ArrayList<String>();
+        List<String> numbers = new ArrayList<>();
 
         for (WebElement element : webElements) {
             String text = element.getText().replaceAll("€", "").trim();
@@ -116,7 +130,7 @@ public class ProductsFilter extends BasePage {
             System.out.println("Screenshots disabled");
         }
     }
-    public static void smollestPriceAscending(){
+    public static void smollestPriceAscending() throws IOException{
 
         // Einame į Naujausi produktai skiltį:
         WebDriverWait biggestPriceWait = new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -136,7 +150,7 @@ public class ProductsFilter extends BasePage {
         }
         // KAINOS: Su Original Prices layout.
         List<WebElement> webElements = driver.findElements(By.cssSelector(".woocommerce-Price-amount.amount"));
-        List<String> numbers = new ArrayList<String>();
+        List<String> numbers = new ArrayList<>();
 
         for (WebElement element : webElements) {
             String text = element.getText().replaceAll("€", "").trim();

@@ -1,5 +1,4 @@
 package RutaLT;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -9,6 +8,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -21,10 +21,12 @@ public class ArraySearchProduct extends BasePage {
 
 
     public ArraySearchProduct() {
-        super(driver, firefoxDriver);
+        super(driver);
     }
 
-    static void searchByTitle() {
+    public static void searchByTitle() throws IOException {
+
+
         String[] searchTitles = {"traškučiai", "dražė", "apelsinų"};
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -68,18 +70,16 @@ public class ArraySearchProduct extends BasePage {
                 System.out.println("Word:  '" + title + "' is NOT in every title in the list.");
             }
         }
-        try{
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+        try {
+            java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("yyyyMMdd-HHmmss");
             Date currentDate = new Date();
             String dateTime = dateFormat.format(currentDate);
             String fileName = "screenshot-" + dateTime + ".png";
-            File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
                     "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
-        }catch (Exception e){
-            System.out.println("Screenshot disabled.");
+        }catch (Exception k){
+            System.out.println("Screenshot disabled");
         }
-
-//        driver.quit();
     }
 }
