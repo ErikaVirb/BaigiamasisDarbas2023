@@ -21,6 +21,8 @@ import static org.junit.Assert.assertArrayEquals;
 
 public class TestPage extends BasePage {
 
+    private static WebDriver driver;
+
 
     private PopUpSubscription popUpSubscription;
     private Registration registration;
@@ -37,11 +39,19 @@ public class TestPage extends BasePage {
 
     @BeforeClass
     public static void setUp() {
+        // ChromeDriver:
         System.setProperty("webdriver.chrome.driver", "D:/Mano/Mokslai/IT mokymai/chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         TestPage.driver = new ChromeDriver(options);
         TestPage.driver.manage().window().maximize();
+
+        // FirefoxDriver:
+//        System.setProperty("webdriver.chrome.driver", "D:/Mano/Mokslai/IT mokymai/Firefox/geckodriver.exe");
+//        FirefoxOptions firefoxOptions = new FirefoxOptions();
+//        firefoxOptions.setBinary("C:/Program Files/Mozilla Firefox/firefox.exe");
+//        driver = new FirefoxDriver(firefoxOptions);
+//        driver.manage().window().maximize();
     }
     @Test
     public void arraySearchProduct() throws IOException {

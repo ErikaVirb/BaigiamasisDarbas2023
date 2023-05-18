@@ -26,9 +26,7 @@ public class ShoppingBag extends BasePage {
 
     // ePardChoseCategory:
     private static final By eShopButton = By.cssSelector("li.header-button-1:nth-child(1) > div:nth-child(1) > " +
-            "a:nth-child(1)");//"#wide-nav > div > div > ul > li.html.header-button-1 > " +
-    //"div > a");
-    //By.className("header-button"); //
+            "a:nth-child(1)");
     // Prekių kategorijos:
     private static final By chocolateFiguresButton = By.xpath("/html/body/div[1]/main/div/div[1]/div/" +
             "aside/ul/li[6]/a");
@@ -48,14 +46,13 @@ public class ShoppingBag extends BasePage {
     public ShoppingBag() {
         super(driver);
     }
-//    public ShoppingBag() {
-//        super(driver, firefoxDriver);
-//    }
+
 
 
     public static void eShopChoseCategory() throws IOException {
 
 
+        // Apsibrėžiam wait'us naudojimui visam metodui.
         WebDriverWait eShopButtonWait = new WebDriverWait(driver, Duration.ofSeconds(15));
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(15))
@@ -63,10 +60,13 @@ public class ShoppingBag extends BasePage {
                 .ignoring(NoSuchElementException.class);
         try {
             // Einame į e.Parduotuvę, išsirenkam kategoriją "Šokoladinės Figūros":
+            // e.Parduotuvės mygtuko paspaudimas
             WebElement eShopButton1 = wait.until(ExpectedConditions.visibilityOfElementLocated(eShopButton));
             eShopButton1.click();
+            // Scroll'inam 100 pikselių žemyn
             JavascriptExecutor js2 = (JavascriptExecutor) driver;
             js2.executeScript("window.scrollBy(0, 100)");
+            // Spaudžiame pasirinkimo mygtuką "Šokoladinės figūros"
             WebElement chocolateFigButton = eShopButtonWait.until(ExpectedConditions.visibilityOfElementLocated
                     (chocolateFiguresButton));
             chocolateFigButton.click();
@@ -74,6 +74,7 @@ public class ShoppingBag extends BasePage {
             System.out.println("Chocolate Figures Button not in display");
         }
         try{
+            // Darome sceenshot'us:
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
             Date currentDate = new Date();
             String dateTime = dateFormat.format(currentDate);
@@ -90,32 +91,35 @@ public class ShoppingBag extends BasePage {
 
 
         // Pirma prekė (zuikutis):
+        // Apsibrėžiam wait'us naudojimui visam metodui.
         WebDriverWait eShopButtonWait1 = new WebDriverWait(driver, Duration.ofSeconds(15));
         try {
+            // Scroll'inam su JavaScript iki pat puslapio apačios vertikalei, bet 0-niame taške kairės ekrano pusės.
             JavascriptExecutor js1 = (JavascriptExecutor) driver;
             js1.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+            // Scroll'inam su JavaScript iki pat puslapio viršaus vertikalei, bet 0-niame taške kairės ekrano pusės.
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollTo(0, 0)");
+            // Spaudžiame ant pirmos pasirinktos prekės "Zuikutis"
             WebElement products1 = eShopButtonWait1.until(ExpectedConditions.visibilityOfElementLocated(product1));
             products1.click();
-            //  plusOne11.wait(3000) -  galimas variantas
-            // Scroll - kad pasimatytų mygtukai "+1" ir "Į krepšelį".
+            // Scroll 300 pixel'ių, kad pasimatytų mygtukai "+1" ir "Į krepšelį".
             JavascriptExecutor js2 = (JavascriptExecutor) driver;
             js2.executeScript("window.scrollBy(0, 300)");
+            // Padidinam pirmosios prekės kiekį iki 2jų
             WebElement plusOne1 = eShopButtonWait1.until(ExpectedConditions.visibilityOfElementLocated(plusOne));
             plusOne1.click();
+            // Spaudžiame mygtuką "Pridėti Į Krepšelį
             WebElement addToCart1 = eShopButtonWait1.until(ExpectedConditions.visibilityOfElementLocated(addToCart));
             addToCart1.click();
-            // 5 kart paspausti back.
-//            for(int i = 0; i < 5; i++){
-//                driver.navigate().back();
-//            }
+            // Imituojam "back", du kart "paspaudžiam" atgal, kad gryžti į "e.Parduotuvė"
             driver.navigate().back(); // Be dvigubo "back" negryžta atgal.
             driver.navigate().back();
         } catch (Exception e) {
             System.out.println("Plus One Button not in display");
         }
         try{
+            // Darome sceenshot'us:
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
             Date currentDate = new Date();
             String dateTime = dateFormat.format(currentDate);
@@ -132,26 +136,35 @@ public class ShoppingBag extends BasePage {
 
 
         // Antra prekė (Mašinėlė):
+        // Apsibrėžiam wait'us naudojimui visam metodui.
         WebDriverWait eShopButtonWait2 = new WebDriverWait(driver, Duration.ofSeconds(15));
         try {
+            // Scroll'inam su JavaScript iki pat puslapio apačios vertikalei, bet 0-niame taške kairės ekrano pusės.
             JavascriptExecutor js1 = (JavascriptExecutor) driver;
             js1.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+            // Scroll'inam su JavaScript iki pat puslapio viršaus vertikalei, bet 0-niame taške kairės ekrano pusės.
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollTo(0, 0)");
+            // Spaudžiame ant antros pasirinktos prekės "Mašinėlė"
             WebElement produc2 = eShopButtonWait2.until(ExpectedConditions.visibilityOfElementLocated(product2));
             produc2.click();
+            // Scroll 400 pixel'ių, kad pasimatytų mygtukai "+1" ir "Į krepšelį".
             JavascriptExecutor js3 = (JavascriptExecutor) driver;
             js3.executeScript("window.scrollBy(0, 400)");
+            // Padidinam antrosios prekės kiekį iki 2jų
             WebElement plusOne1 = eShopButtonWait2.until(ExpectedConditions.visibilityOfElementLocated(plusOne));
             plusOne1.click();
+            // Spaudžiame mygtuką "Pridėti Į Krepšelį
             WebElement addToCart2 = driver.findElement(addToCart);
             addToCart2.click();
+            // Imituojam "back", du kart "paspaudžiam" atgal, kad gryžti į "e.Parduotuvė"
             driver.navigate().back();
             driver.navigate().back();
         } catch (Exception e) {
             System.out.println("Product: Chocolate car not in display");
         }
         try{
+            // Darome sceenshot'us:
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
             Date currentDate = new Date();
             String dateTime = dateFormat.format(currentDate);
@@ -168,14 +181,19 @@ public class ShoppingBag extends BasePage {
 
 
         // Einame į e.Parduotuvę, išsirenkam kategoriją "Desertiniai saldainiai":
+        // Apsibrėžiam wait'us naudojimui visam metodui.
         WebDriverWait eShopButtonWait = new WebDriverWait(driver, Duration.ofSeconds(35));
 
         try {
+            // Scroll'inam su JavaScript iki pat puslapio viršaus vertikalei, bet 0-niame taške kairės ekrano pusės.
+            //(Apsisaugau nuo ekrano neprognozuotino pasislinkimo)
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollTo(0, 0)");
+            // Einame į e.Parduotuvę, išsirenkam kategoriją "Desertiniai Saldainiai" ir paspaudžiam ant jo:
             WebElement chocolateFigButton = eShopButtonWait.until(ExpectedConditions.visibilityOfElementLocated
                     (dessertSweetsButton));
             chocolateFigButton.click();
+            // Išsirenkam pokategoriją "Juodojo Šokolado" ir paspaudžiam ant jo:
             WebElement blackChocolate1 = eShopButtonWait.until(ExpectedConditions.visibilityOfElementLocated
                     (blackChocolate));
             blackChocolate1.click();
@@ -186,22 +204,29 @@ public class ShoppingBag extends BasePage {
         WebDriverWait eShopButtonWait2 = new WebDriverWait(driver, Duration.ofSeconds(15));
         WebDriverWait plusOneWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
+            // Scroll'inam su JavaScript iki pat puslapio apačios vertikalei, bet 0-niame taške kairės ekrano pusės.
             JavascriptExecutor js1 = (JavascriptExecutor) driver;
             js1.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+            // Scroll'inam su JavaScript iki pat puslapio viršaus vertikalei, bet 0-niame taške kairės ekrano pusės.
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollTo(0, 0)");
+            // Spaudžiame ant trečios pasirinktos prekės "Raimoda"
             WebElement produc2 = eShopButtonWait2.until(ExpectedConditions.visibilityOfElementLocated(product3));
             produc2.click();
+            // Scroll 400 pixel'ių, kad pasimatytų mygtukai "+1" ir "Į krepšelį".
             JavascriptExecutor js3 = (JavascriptExecutor) driver;
             js3.executeScript("window.scrollBy(0, 400)");
+            // Padidinam antrosios prekės kiekį iki 2jų
             WebElement plusOne1 = plusOneWait.until(ExpectedConditions.visibilityOfElementLocated(plusOne));
             plusOne1.click();
+            // Spaudžiame mygtuką "Pridėti Į Krepšelį
             WebElement addToCart2 = driver.findElement(addToCart);
             addToCart2.click();
         } catch (Exception r) {
             System.out.println("Product: Button not in displayed");
         }
         try{
+            // Darome sceenshot'us:
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
             Date currentDate = new Date();
             String dateTime = dateFormat.format(currentDate);

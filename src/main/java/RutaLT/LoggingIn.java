@@ -27,8 +27,10 @@ public class LoggingIn extends BasePage{
     public static void loggingIn() throws IOException {
 
 
+        // Apsibrėžiam wait'a naudojimui visam metodui.
         WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
+            // Spaudžiame mygtuką "Mano paskyra".
             WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated
                     (myAccountButton));
             accountButton.click();
@@ -36,13 +38,17 @@ public class LoggingIn extends BasePage{
             System.out.println("My account Button is not found. ");
         }
         try {
+            // "PRISIJUNGTI" skiltis "MANO PASKYROJE".
+            // Įvedam egzistuojančios paskiros duomenis."Vartotojo el.pašto adresas *" :
             WebElement emailField = driver.findElement(connectEmailInput);
             String emailData = "skirmantas.skirmantas@yahoo.com";
             emailField.sendKeys(emailData);
+            // Įvedam egzistuojančios paskyros duomenis."Slaptažodis *" :
             WebElement passwordIn = driver.findElement(connectPasswordInput);
             String passwordInp = "palubinskasIrCo123";
             passwordIn.sendKeys(passwordInp);
             Thread.sleep(1000);
+            // Spaudžiame mygtuką "Prisijungti".
             WebElement connButton = driver.findElement(connectButton);
             connButton.click();
 
@@ -50,6 +56,7 @@ public class LoggingIn extends BasePage{
             System.out.println("Connect button not found.");
         }
         try {
+            // Darome sceenshot'us:
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
             Date currentDate = new Date();
             String dateTime = dateFormat.format(currentDate);
@@ -64,8 +71,10 @@ public class LoggingIn extends BasePage{
     public static void incorrectDatalogingIn() throws IOException {
 
 
+        // Apsibrėžiam wait'a naudojimui visame metode.
         WebDriverWait myAccounWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
+            // Spaudžiame mygtuką "Mano paskyra".
             WebElement accountButton = myAccounWait.until(ExpectedConditions.visibilityOfElementLocated
                     (myAccountButton));
             accountButton.click();
@@ -73,19 +82,26 @@ public class LoggingIn extends BasePage{
             System.out.println("My account Button is not found. ");
         }
         try {
+            // "PRISIJUNGTI" skiltis "MANO PASKYROJE".
+            // Įvedam NEegzistuojančios paskiros duomenis."Vartotojo el.pašto adresas *" :
             WebElement emailField = driver.findElement(connectEmailInput);
             String emailData = "wokr.hard@gmail.com";
             emailField.sendKeys(emailData);
+            // Įvedam NEegzistuojančios paskyros duomenis."Slaptažodis *" :
             WebElement passwordIn = driver.findElement(connectPasswordInput);
             String passwordInp = "EyesOnKybord";
             passwordIn.sendKeys(passwordInp);
             Thread.sleep(1000);
+            // Spaudžiame mygtuką "Prisijungti".
             WebElement connButton = driver.findElement(connectButton);
             connButton.click();
-
+            // Nusirodom kokio žodžio ieškosime "error" tekste.
             String expectedErrorText = "neteisingas";
+            // Nusiskaitom "error" textą iš webpage'o texto formatu, kurį palyginsim su nusistatytu žodžiu
+            // "neteisingas":
             String actualErrorText = driver.findElement(errorText).getText();
 
+            // Palyginimas - ar žodis "neteisingas" yra "error" sakinyje:
             if (actualErrorText.contains(expectedErrorText)) {
                 System.out.println("The error message is correct!");
             } else {
@@ -96,6 +112,7 @@ public class LoggingIn extends BasePage{
             System.out.println("Connect button not found.");
         }
         try {
+            // Darome sceenshot'us:
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
             Date currentDate = new Date();
             String dateTime = dateFormat.format(currentDate);

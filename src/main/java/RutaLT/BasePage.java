@@ -10,7 +10,9 @@ public class BasePage {
     protected static WebDriver driver;
 
     public BasePage(WebDriver driver){
-        BasePage.driver = driver;
+        this.driver = driver;
+
+//        BasePage.driver = driver;
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }

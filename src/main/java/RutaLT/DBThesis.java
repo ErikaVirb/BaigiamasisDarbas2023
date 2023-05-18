@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class DBThesis extends BasePage{
 
 
-    private static final String DB_URL = "jdbc://postgresql://localhost:5432/DBThesis";
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/DBThesis";
     private static final String DB_USER = "postgres";
     private static final String DB_PASSWORD = "Amerika12";
     private static Connection connection = null;
@@ -38,8 +38,8 @@ public class DBThesis extends BasePage{
     public static void createTable() throws SQLException {
 
 
-        //Lenteles kurimas jei noriu siūsti į Input laukelį pvz. pavadinimus "zele, traskuciai, saldainiai":
-        String sql = "CREATE TABLE IF NOT EXISTS search_results (\n" // "IF NOT EXISTS" - Patikrinimas, jei neegzistuoja
+        //Lenteles kurimas jei noriu siūsti į Input laukelį pvz. pavadinimus "traskuciai, dražė, apelsinų":
+        String sql = "CREATE TABLE IF NOT EXISTS array_words (\n" // "IF NOT EXISTS" - Patikrinimas, jei neegzistuoja
                 // tada ją sukurs.
                 + "id SERIAL PRIMARY KEY, \n"
                 + "term TEXT NOT NULL, \n"
@@ -48,7 +48,7 @@ public class DBThesis extends BasePage{
 
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
-            System.out.println("Table : 'Search Results' created successfully!");
+            System.out.println("Table : 'Array_words' created successfully!");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -70,7 +70,7 @@ public class DBThesis extends BasePage{
             System.out.println("Search term: " + term + ", Count: " + count);
 
             // Insert results into database
-            String sql = "INSERT INTO search_results(term, count) VALUES (?, ?);"; // Įdedam duomenis į lentelę
+            String sql = "INSERT INTO array_words(term, count) VALUES (?, ?);"; // Įdedam duomenis į lentelę
             try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
                 pstmt.setString(1, term);
                 pstmt.setInt(2, count);
