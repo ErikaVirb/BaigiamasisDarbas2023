@@ -1,6 +1,9 @@
 package RutaLT;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import java.io.IOException;
 
 public class SuzinotaButinaPasilikt extends BasePage{
     public SuzinotaButinaPasilikt() {
@@ -266,6 +269,24 @@ public class SuzinotaButinaPasilikt extends BasePage{
 ////
 ////        assertArrayEquals(list1.toArray(), list2.toArray());
 //    }
+//        public static void subscriptClick() throws IOException {
+//
+//            // VEIKIA KAIP PASPAUDIMAS KAMPUTYJE (palikti):
+//            try {
+//                Thread.sleep(5000);
+//                Actions actions = new Actions(driver);
+//                actions.moveByOffset(0, 0).click().build().perform();
+//            } catch (Exception e) {
+//                System.out.println("Nerastas popupas");
+//            }
+////        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+////        Date currentDate = new Date();
+////        String dateTime = dateFormat.format(currentDate);
+////        String fileName = "screenshot-" + dateTime + ".png";
+////        File screenshotFile = ((TakesScreenshot)chromeDriver).getScreenshotAs(OutputType.FILE);
+////        FileUtils.copyFile(screenshotFile, new File("D:\\\\Mano\\\\Mokslai\\\\IT mokymai\\\\" +
+////                "Baigiamasis2023\\\\ScreenshotFilesreenshot.png" + fileName));
+//        }
 
     }
 }

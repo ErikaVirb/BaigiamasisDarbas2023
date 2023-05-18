@@ -41,16 +41,22 @@ public class ManageShopBag extends BasePage{
 
 
     public static void manageShopBag() throws IOException {
+
+
+        // ĮSPĖJIMAS: BE KLASĖS "ShoppingBag" NEVEIKS. Pradžioje teste turi praeiti "ShoppingBag" ir tik po to ši klasė.
+
+        // Apsibrėžiam wait'a naudojimui visam metodui.
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
         Wait<WebDriver> fluentWait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(35))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         try {
+            // Spaudžiame įkoną "Pirkinių Krepšelis"
             WebElement shoppingBagElement = wait.until(ExpectedConditions.visibilityOfElementLocated(shoppingBag));
             shoppingBagElement.click();
             Thread.sleep(5000);
-
+            // Pašaliname trečią prekę
             WebElement removeProductElement = wait.until(ExpectedConditions.elementToBeClickable(removeProduct3));
             removeProductElement.click();
             Thread.sleep(4000);
@@ -58,19 +64,20 @@ public class ManageShopBag extends BasePage{
             System.out.println("Remove Button not found");
         }
         try {
+            // Spaudžiame mygtuką "Atnaujinti krepšelį"
             WebElement updateShoppingBagElement = wait.until(ExpectedConditions.visibilityOfElementLocated
                     (updateshoppingBag));
             updateShoppingBagElement.click();
             Thread.sleep(6000);
-
+            // Padidiname pirmosios prekės kiekį iki 3 vnt.
             WebElement increaseElement = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(increase));
             increaseElement.sendKeys(Keys.ENTER);
             Thread.sleep(6000);
-
+            // Sumažiname antrosios prekės kiekį iki 1 vnt.
             WebElement reduceElement = wait.until(ExpectedConditions.visibilityOfElementLocated(reduce));
             reduceElement.sendKeys(Keys.ENTER);
             Thread.sleep(4000);
-
+            // Atnaujiname prekių krepšelį spausdami mygtuką: "Atnaujinti krepšelį"
             WebElement updateShoppingBagElement2 = wait.until(ExpectedConditions.visibilityOfElementLocated
                     (updateshoppingBag));
             updateShoppingBagElement2.click();
@@ -80,15 +87,19 @@ public class ManageShopBag extends BasePage{
         } catch (Exception m) {
             System.out.println("Increase Button Not found");
         }
+            // Nusistatom Informacinio pranešimo iškomus žodžius
             String expectedUpdateText = "Krepšelis atnaujintas";
+            // Nusiskaitom Informacinio pranešimo textą iš web page
             String actualUpdateText = driver.findElement(updateMessageText).getText();
 
+        // Atliekame tekstų palyginimą ir išvedam į consolę ar nustatyta reikšmė yra dalis Informacinio teksto
         if (actualUpdateText.contains(expectedUpdateText)) {
             System.out.println("The Update Text message is correct!");
         } else {
             System.out.println("The Update Text message is INCORECT!");
         }
         try{
+            // Darome sceenshot'us:
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
             Date currentDate = new Date();
             String dateTime = dateFormat.format(currentDate);
@@ -102,8 +113,12 @@ public class ManageShopBag extends BasePage{
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         try {
             // Imam reikšmę ir atimam paskutinį simbolį "$".
+            // Nusiskaitome Pirmosios prekės kainą
             String firstProductPriceText = driver.findElement(firstProductPrice).getText();
+            // Nusiskaitome Antrosios prekės kainą
             String secondProductPriceText = driver.findElement(secondProductPrise).getText();
+            // Imam visą nusiskaitytą reikšmę (šiuo atveju kaip pvz. turiu tokį formatą "10.12 €") ir atimu paskutinį
+            // simbolį/reikšmę
             firstProductPriceText = firstProductPriceText.substring(0, firstProductPriceText.length() - 1);
             secondProductPriceText = secondProductPriceText.substring(0, secondProductPriceText.length() - 1);
 
@@ -112,12 +127,14 @@ public class ManageShopBag extends BasePage{
             double secondProductPrice = Double.parseDouble(secondProductPriceText);
             double totalSum = firstProductPrice + secondProductPrice;
 
-            // Imam Sumos reikšmę ir atimam paskutinį simbolį "$".
+            // Nusiskaitom Sumos reikšmę
             String totalText = driver.findElement(inTotal).getText();
+            // atimam paskutinį simbolį "€".
             totalText = totalText.substring(0, totalText.length() - 1);
 
-            //Konvertuojam Sumos String i double ir palyginam
+            //Konvertuojam Sumos String i double
             double total = Double.parseDouble(totalText);
+            // Lyginam ar sumos yra lygios/tokios pačios ir išvedam atsakymą į konsolę
             if (total == totalSum) {
                 System.out.println("The calculated sum is correct!");
             } else {
@@ -127,6 +144,7 @@ public class ManageShopBag extends BasePage{
             System.out.println("Price not in display");
         }
         try{
+            // Darome sceenshot'us:
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
             Date currentDate = new Date();
             String dateTime = dateFormat.format(currentDate);
